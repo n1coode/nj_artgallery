@@ -1,0 +1,146 @@
+.line-height(@height: 20,@unit:px) 
+{
+    min-height: unit(@height,@unit);
+    line-height: unit(@height,@unit);	
+}
+
+#tx_njartgallery_header
+{
+    @_this-gallery-height: 550px;
+    @_this-gallery-width: 800px;
+   
+    @_this-height-next-vernissage: 235px;
+
+    @_this-factor-actual-exhibition-bottom: 0.095;
+    @_this-factor-display-width: 0.64;
+    @_this-factor-display-margin-left: (1 - @_this-factor-display-width) / 2; 
+    
+    DIV.theGallery
+    {
+        width: @_this-gallery-width;
+        height: @_this-gallery-height;
+        margin: 0;
+        float: right;
+        background: url('../Gfx/gallery.png') no-repeat center bottom;
+        background-size: 100%;
+        position: relative;
+    }
+	
+    DIV.nextVernissage
+    {
+       
+      
+        
+        
+        margin-top: 12%;
+        margin-left: @_this-gallery-width * @_this-factor-display-margin-left;
+        width: @_this-gallery-width * @_this-factor-display-width;
+        height: 12%;
+        text-align: center;
+
+        H2 {
+            .line-height(100,%);
+            margin: 0;
+            font-family: 'SeasideResort';
+            font-size: 30px;
+            color: #FF8A66;
+            text-shadow: 0 0 5px #FF8A66, 0 0 10px #FF8A66, 0 0 5px #fff;
+            border:1px solid #ffffff;
+            letter-spacing: .0625em;
+            display: block;
+        }
+        SPAN.date
+        {
+            font-family: 'Titillium';
+            letter-spacing: .0625em;
+            font-size: 20px;
+
+            display: block;
+        }
+    }
+	
+    DIV.actualExhibition
+    {
+        perspective: 10000px;
+        position:absolute;
+        width: 550px;
+        
+        height: 150px; 
+        bottom: @_this-gallery-height * @_this-factor-actual-exhibition-bottom;
+        left: 125px;
+        overflow: hidden;
+        DIV.artwork
+        {
+            position: absolute;
+            height: inherit;
+            bottom: 0px;
+            line-height: 150px;
+            
+            
+  -webkit-transform-style: flat;
+  -webkit-transform:  rotateX(6deg);
+  transform-style: flat;
+  transform:  rotateX(6deg);
+            
+            &.no0 { left: 5px; }
+            &.no1 { left: 307px; }
+            &.no2 { left: 449px; }
+
+            IMG {
+                
+  
+                -webkit-backface-visibility: visible;
+  -webkit-transform:  translateZ(100px);
+  backface-visibility: visible;
+  transform:  translateZ(100px);
+  
+                vertical-align:bottom;
+                -webkit-box-shadow: 0 0 1px 1px fade(#474747, 25%);
+                box-shadow: 0 0 1px 1px fade(#474747, 25%);
+            }
+        }
+    }
+}  
+
+#tx_njartgallery_exhibition_actualteaser
+{
+    
+    .fa
+    {
+        width: 24px !important;
+        text-align: left !important;
+    }
+    
+    .type
+    {
+        margin-bottom: 9px;
+    }
+   
+}
+
+#tx_njartgallery_exhibition_actual
+{
+    .thumbnail
+    {   
+        margin-right: 9px;
+        float: left; 
+    }
+}
+
+
+#tx_njartgallery_artist_focus
+{
+    .summary 
+    {
+        margin: 0 0 45px 0;
+    }
+    
+    .artworks
+    {
+        .thumbnail
+        {
+            margin: 0 9px 9px 0;
+            float: left;
+        }
+    }
+}

@@ -1,0 +1,90 @@
+#tx_njartgallery_header DIV.theGallery {
+  width: 800px;
+  height: 550px;
+  margin: 0;
+  float: right;
+  background: url('../Gfx/gallery.png') no-repeat center bottom;
+  background-size: 100%;
+  position: relative;
+}
+#tx_njartgallery_header DIV.nextVernissage {
+  margin-top: 12%;
+  margin-left: 144px;
+  width: 512px;
+  height: 12%;
+  text-align: center;
+}
+#tx_njartgallery_header DIV.nextVernissage H2 {
+  min-height: 100%;
+  line-height: 100%;
+  margin: 0;
+  font-family: 'SeasideResort';
+  font-size: 30px;
+  color: #FF8A66;
+  text-shadow: 0 0 5px #FF8A66, 0 0 10px #FF8A66, 0 0 5px #fff;
+  border: 1px solid #ffffff;
+  letter-spacing: .0625em;
+  display: block;
+}
+#tx_njartgallery_header DIV.nextVernissage SPAN.date {
+  font-family: 'Titillium';
+  letter-spacing: .0625em;
+  font-size: 20px;
+  display: block;
+}
+#tx_njartgallery_header DIV.actualExhibition {
+  perspective: 10000px;
+  position: absolute;
+  width: 550px;
+  height: 150px;
+  bottom: 52.25px;
+  left: 125px;
+  overflow: hidden;
+}
+#tx_njartgallery_header DIV.actualExhibition DIV.artwork {
+  position: absolute;
+  height: inherit;
+  bottom: 0px;
+  line-height: 150px;
+  -webkit-transform-style: flat;
+  -webkit-transform: rotateX(6deg);
+  transform-style: flat;
+  transform: rotateX(6deg);
+}
+#tx_njartgallery_header DIV.actualExhibition DIV.artwork.no0 {
+  left: 5px;
+}
+#tx_njartgallery_header DIV.actualExhibition DIV.artwork.no1 {
+  left: 307px;
+}
+#tx_njartgallery_header DIV.actualExhibition DIV.artwork.no2 {
+  left: 449px;
+}
+#tx_njartgallery_header DIV.actualExhibition DIV.artwork IMG {
+  -webkit-backface-visibility: visible;
+  -webkit-transform: translateZ(100px);
+  backface-visibility: visible;
+  transform: translateZ(100px);
+  vertical-align: bottom;
+  -webkit-box-shadow: 0 0 1px 1px rgba(71, 71, 71, 0.25);
+  box-shadow: 0 0 1px 1px rgba(71, 71, 71, 0.25);
+}
+#tx_njartgallery_exhibition_actualteaser .fa {
+  width: 24px !important;
+  text-align: left !important;
+}
+#tx_njartgallery_exhibition_actualteaser .type {
+  margin-bottom: 9px;
+}
+#tx_njartgallery_exhibition_actual .thumbnail {
+  margin-right: 9px;
+  float: left;
+}
+#tx_njartgallery_artist_focus .summary {
+  margin: 0 0 45px 0;
+}
+#tx_njartgallery_artist_focus .artworks .thumbnail {
+  margin: 0 9px 9px 0;
+  float: left;
+}
+/*# sourceMappingURL=tx_njartgallery.css.map */

@@ -1,0 +1,39 @@
+{namespace njVH=N1coode\NjArtgallery\ViewHelpers}
+<f:if condition="{artist}">
+    <f:then>
+        <div class="tx_njartgallery artist focus clearfix">
+            <h2>{artist.name}</h2>
+            <f:if condition="{artist.summary}">
+                <div class="summary">
+                    <f:format.raw value="{artist.summary}"></f:format.raw>
+                </div>
+            </f:if>
+            <f:if condition="{artworks}">
+                <div class="artworks clearfix">
+                    <f:for each="{artworks}" as="artwork" iteration="artworkIterator">
+                        <f:if condition="{artwork.image}">
+                            <div class="thumbnail" data-artwork="{artwork.uid}">
+                                <f:image src="{artwork.image.uid}" treatIdAsReference="1" alt="" height="150"></f:image>
+                            </div>
+                        </f:if>
+                    </f:for>
+                </div>
+            </f:if>
+			<f:if condition="{artist.vita}">
+				<div class="vita">
+					<h3>Vita</h3>
+					<ul>
+						<f:for each="{artist.vita}" as="vita" iteration="iterator">
+							<li class="n1flex group">
+								<span class="flexitem col3of12">{vita.dateFrom}</span>
+								<span class="flexitem col9of12"><f:format.raw>{vita.content}</f:format.raw></span>
+							</li>
+						</f:for>
+					</ul>
+				</div>
+			</f:if>
+			<f:render partial="JavascriptArguments" arguments="{js:js}"></f:render>
+        </div>
+    </f:then>
+    <f:else>Message: no artist selected</f:else>
+</f:if>

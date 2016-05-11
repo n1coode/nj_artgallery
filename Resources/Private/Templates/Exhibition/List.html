@@ -1,0 +1,149 @@
+{namespace njVH=N1coode\NjArtgallery\ViewHelpers}
+{namespace njcVH=N1coode\NjCollection\ViewHelpers}
+<div class="{ext.key} {ext.domain} {ext.action} {ext.version} clearfix">
+	<f:if condition="{exhibitions}">
+		<f:then>
+<f:switch expression="{ext.version}">
+	<f:case value="standard">
+	</f:case>
+	<f:case value="next">
+		<ul class="">
+			<f:for each="{exhibitions}" as="exhibition" iteration="iterator">
+				<li class="{f:if(condition:'{iterator.isFirst}',then:'highlight',else:'')} clearfix" data-item="{exhibition.uid}">
+					<div class="exhibition">
+						<f:format.date format="d.m.Y">{exhibition.exhibitionStart}</f:format.date>
+						-
+						<f:format.date format="d.m.Y">{exhibition.exhibitionEnd}</f:format.date>
+					</div>
+					<div class="details">
+						<f:if condition="{iterator.isFirst}">
+							<h3>{exhibition.title}</h3>
+							<i class="articon-group26"></i>
+							<f:if condition="{exhibition.type} == '0'">
+								<f:translate key="{ext.langFile}label.model.exhibition.type.joint" />
+							</f:if>
+						</f:if>
+					</div>
+				</li>
+			</f:for>
+		</ul>
+	</f:case>
+	<f:case value="past">
+		<f:render partial="Grid" arguments="{_all}" />
+	</f:case>
+</f:switch>
+		</f:then>
+	</f:if>
+</div>
+	
+	
+	
+	
+	
+	
+	<f:comment>
+		
+		
+		<f:if condition="{exhibitions}">
+        <f:then>
+            <ul class="">
+                <f:for each="{exhibitions}" as="exhibition" iteration="iterator">
+					<f:switch expression="{ext.version}">
+						<f:case value="standard">
+						</f:case>
+						<f:case value="next">
+							
+						</f:case>
+						<f:case value="past">
+							<li class="flexitem col3of12" data-item="{exhibition.uid}">
+								
+								<div class="exhibition">
+									<div class="line top"></div>
+									<div class="teaser stretchy-wrapper">
+										<div>
+											<f:link.action pageUid="{settings.model.exhibition.pid.focus}" action="focus" arguments="{exhibition:exhibition}">
+											<div class="foreground">
+												<div class="title"><h3>{exhibition.title}</h3></div>
+												<div class="readmore">Zur Ausstellung</div>
+											</div>
+											<div class="background">
+												<f:if condition="{exhibition.teaserImage}">
+													<f:then>
+														<f:alias map="{width:'350'}">
+															<f:image src="{exhibition.teaserImage.image.uid}" treatIdAsReference="1" width="{width}" height="{njcVH:ratio(input:width)}c" />
+														</f:alias>
+													</f:then>
+												</f:if>
+											</div>
+											</f:link.action>
+										</div>
+									</div>
+									<div class="shadow bottom"></div>
+									<div class="date">
+										<f:format.date format="d.m.Y">{exhibition.exhibitionStart}</f:format.date> - <f:format.date format="d.m.Y">{exhibition.exhibitionEnd}</f:format.date>
+									</div>
+									<div class="info">
+										<span class="type"><f:translate key="{ext.langFile}label.model.exhibition.type.{exhibition.type}" /></span>
+										<f:if condition="{exhibition.artists}">
+											<span class="artists">
+<f:format.crop maxCharacters="75"><f:for each="{exhibition.artists}" as="artist" iteration="artistIterator">{artist.name}<f:if condition="{artistIterator.isLast}"><f:then></f:then><f:else>, </f:else></f:if></f:for></f:format.crop>
+											</span>
+										</f:if>
+									</div>
+									
+								</div>
+							</li>
+						</f:case>
+						<f:case default="true">
+						</f:case>
+					</f:switch>
+                </f:for>
+            </ul>
+			
+        </f:then>
+        <f:else>
+            Message: no exhibitions found.
+        </f:else>
+    </f:if>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			var tx_njartgallery_teaser = '.{ext.key}.{ext.domain}.{ext.action}.{ext.version} .teaser';
+			
+			$(tx_njartgallery_teaser + " .readmore").hide(0);
+			
+			$(document).on("mouseenter",tx_njartgallery_teaser,function()
+			{
+				$(this).find("IMG").animate(
+						{
+							width: '105%',
+							height: '105%',
+							marginTop: '-2.5%',
+							marginLeft: '-2.5%',
+							opacity: 0.5
+						},125,function(){$(this).addClass("blur")});
+				$(this).find(".readmore").slideDown("fast");
+			});
+			$(document).on("mouseleave",tx_njartgallery_teaser,function()
+			{
+				$(this).find("IMG").removeClass("blur").animate(
+						{
+							width: '100%',
+							height: '100%',
+							marginTop: '0',
+							marginLeft: '0',
+							opacity: 1
+						},0);
+				$(this).find(".readmore").slideUp("fast");
+			});
+		});
+	</script>
+</div>
+		
+		
+		
+		
+		
+		
+	</f:comment>
+    

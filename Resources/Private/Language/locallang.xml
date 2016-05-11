@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3locallang>
+    <meta type="array">
+        <type>module</type>
+        <description>Language labels for the extension 'nj_artgallery'.</description>
+    </meta>
+    <data type="array">
+        <languageKey index="default" type="array">
+            <label index="actualTeaser.type.0">Joint exhibition</label>
+            <label index="actualTeaser.type.1">Solo exhibition</label>
+            <label index="showcase.sold">Artwork sold</label>
+            <label index="general.at">at</label>
+            <label index="general.by">by</label>
+            <label index="general.category">Category</label>
+            <label index="general.link.more.Motives">Show more motives &#187;</label>
+            <label index="general.month.01">January</label>
+            <label index="general.month.02">February</label>
+            <label index="general.month.03">March</label>
+            <label index="general.month.04">April</label>
+            <label index="general.month.05">May</label>
+            <label index="general.month.06">June</label>
+            <label index="general.month.07">July</label>
+            <label index="general.month.08">August</label>
+            <label index="general.month.09">October</label>
+            <label index="general.month.10">September</label>
+            <label index="general.month.11">November</label>
+            <label index="general.month.12">December</label>
+            <label index="general.oClock">o'clock</label>
+            <label index="general.readmore">readmore</label>
+            <label index="general.tx_njartgallery.plugin.title">njs Art Gallery</label>
+            <label index="general.tx_njartgallery.plugin.title.display">njs Art Gallery - Show</label>
+            <label index="header.vernissageNext">Next Vernissage</label>
+            <label index="tx_njartgallery_domain_model_exhibition.type.0">Gruppenausstellung</label>
+            <label index="tx_njartgallery_domain_model_exhibition.type.1">Einzelausstellung</label>
+        </languageKey>
+        <languageKey index="de" type="array">
+            <label index="actualTeaser.type.0">Gruppenausstellung</label>
+            <label index="actualTeaser.type.1">Einzelausstellung</label>
+            <label index="showcase.sold">Kunstwerk ist verkauft</label>
+            <label index="general.at">auf</label>
+            <label index="general.by">von</label>
+            <label index="general.category">Kategorie</label>
+            <label index="general.link.more.Motives">Weitere Motive anzeigen  &#187;</label>
+            <label index="general.month.01">Januar</label>
+            <label index="general.month.02">Februar</label>
+            <label index="general.month.03">März</label>
+            <label index="general.month.04">April</label>
+            <label index="general.month.05">Mai</label>
+            <label index="general.month.06">Juni</label>
+            <label index="general.month.07">Juli</label>
+            <label index="general.month.08">August</label>
+            <label index="general.month.09">Oktober</label>
+            <label index="general.month.10">September</label>
+            <label index="general.month.11">November</label>
+            <label index="general.month.12">Dezember</label>
+            <label index="general.oClock">Uhr</label>
+            <label index="general.readmore">weiterlesen</label>
+            <label index="general.tx_njartgallery.plugin.title">njs Kunstgalerie</label>
+            <label index="general.tx_njartgallery.plugin.title.display">njs Art Gallery - Anzeigen</label>
+            <label index="header.vernissageNext">Nächste Vernissage</label>
+            <label index="tx_njartgallery_domain_model_exhibition.type.0">Gruppenausstellung</label>
+            <label index="tx_njartgallery_domain_model_exhibition.type.1">Einzelausstellung</label>
+        </languageKey>
+    </data>
+</T3locallang>

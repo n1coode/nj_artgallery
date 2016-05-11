@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-10-06" product-name="nj_artgallery">
+		<header/>
+		<body>
+			<trans-unit id="headline.model.exhibition.actualExhibition" xml:space="preserve">
+				<target>Aktuelle Ausstellung</target>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.participatingArtists" xml:space="preserve">
+				<target>Teilnehmende Künstler</target>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.type.0" xml:space="preserve">
+				<target>Gruppen-Ausstellung</target>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.type.1" xml:space="preserve">
+				<target>Einzel-Ausstellung</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,155 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+{namespace njvh=N1coode\NjArtgallery\ViewHelpers}
+{namespace njcvh=N1coode\NjCollection\ViewHelpers}
+<div class="grid masonry">
+	<div class="grid-sizer"></div>
+	<div class="gutter-sizer"></div>
+	<f:if condition="{exhibitions}">
+		<f:for each="{exhibitions}" as="exhibition" iteration="iterator">
+			<f:render section="grid-item" arguments="{renderType:'exhibition',exhibition:exhibition}" />
+		</f:for>
+	</f:if>	
+	<f:if condition="{artists}">
+		<f:for each="{artists}" as="artist" iteration="iterator">
+			<f:render section="grid-item" arguments="{renderType:'artist',artist:artist}" />
+		</f:for>
+	</f:if>	
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() 
+	{
+		//TODO init in addition to screen width
+		var itemSelector = '.{ext.key}.{ext.domain}.{ext.action} .grid-item';
+		var columnWidth = '.{ext.key}.{ext.domain}.{ext.action} .grid-sizer';
+		var gutter = '.{ext.key}.{ext.domain}.{ext.action} .gutter-sizer';
+		$('.{ext.key}.{ext.domain}.{ext.action} .grid.masonry').masonry({
+			itemSelector: itemSelector,
+			columnWidth: columnWidth,
+			percentPosition: true,
+			gutter: gutter
+		});
+		
+		
+		var tx_njartgallery_grid_container = '.{ext.key}.{ext.domain}.{ext.action} .grid-item a .container';
+			
+		//$(tx_njartgallery_teaser + " .readmore").hide(0);
+
+		$(document).on("mouseenter",tx_njartgallery_grid_container,function()
+		{
+			$height = $(this).find('IMG').outerHeight();
+			
+			$(this).find("IMG").animateCss('flipInX');
+			$(this).find("IMG").animate(
+			{
+				width: '110%',
+				height: $height,
+				marginLeft: '-5%',
+				opacity: 0.75
+			},125,function(){$(this).addClass("blur");});
+			
+		});
+		$(document).on("mouseleave",tx_njartgallery_grid_container,function()
+		{
+			$(this).find("IMG").animateCss('bounceIn');
+			$(this).find("IMG").removeClass("blur").animate(
+			{
+				width: '100%',
+				marginLeft: '0',
+				opacity: 1
+			},62.5);
+		});
+		
+	});
+</script>
+				
+
+<f:section name="grid-item">
+	<div class="grid-item">
+		<f:switch expression="{renderType}">
+			<f:case value="exhibition">
+				<f:if condition="{settings.model.exhibition.pid.focus}">
+					<f:then>
+						<f:link.action pageUid="{settings.model.exhibition.pid.focus}" action="focus" arguments="{exhibition:exhibition}">
+							<f:render section="container" arguments="{_all}" />
+						</f:link.action>
+					</f:then>
+					<f:else>
+						<f:render section="container" arguments="{_all}" />
+					</f:else>
+				</f:if>
+			</f:case>
+			<f:case value="artist">
+				<f:if condition="{artist.advertise}">
+					<f:then>
+						<f:if condition="{settings.model.artist.pid.focus}">
+							<f:then>
+								<f:link.action pageUid="{settings.model.artist.pid.focus}" action="focus" arguments="{artist:artist}">
+									<f:render section="container" arguments="{_all}" />
+								</f:link.action>
+							</f:then>
+							<f:else>
+								<f:render section="container" arguments="{_all}" />
+							</f:else>
+						</f:if>
+					</f:then>
+					<f:else>
+						<f:render section="container" arguments="{_all}" />
+					</f:else>
+				</f:if>
+			</f:case>
+		</f:switch>
+	</div>
+</f:section>
+
+<f:section name="container">
+	<div class="container">
+		<div class="title">
+	<f:switch expression="{renderType}">
+		<f:case value="exhibition">
+			<div class="date"><f:format.date format="d.m.Y">{exhibition.exhibitionStart}</f:format.date> - <f:format.date format="d.m.Y">{exhibition.exhibitionEnd}</f:format.date></div>
+			<h2>{exhibition.title}</h2>
+		</f:case>
+		<f:case value="artist">
+			<h2>{artist.name}</h2>
+		</f:case>
+	</f:switch>
+			</div>
+			<div class="image">
+				<f:alias map="{width:320}">
+	<f:switch expression="{renderType}">
+		<f:case value="exhibition">
+			<f:if condition="{exhibition.teaserImage}">
+				<f:image src="{exhibition.teaserImage.uid}" treatIdAsReference="1" width="{width}" height="{njcvh:ratio(input:width)}c" />
+			</f:if>
+		</f:case>
+		<f:case value="artist">
+			<f:if condition="{artist.teaserArtwork}">
+				<f:image src="{artist.teaserArtwork.image.uid}" treatIdAsReference="1" width="{width}" />
+			</f:if>
+		</f:case>
+	</f:switch>
+				</f:alias>
+			</div>
+			<div class="info">
+	<f:switch expression="{renderType}">
+		<f:case value="exhibition">
+			<f:if condition="{exhibition.artists}">
+				<p>
+					<f:for each="{exhibition.artists}" as="artist" iteration="i">
+						{artist.name}<f:if condition="{i.isLast}"><f:then> u.a.</f:then><f:else>, </f:else></f:if>
+					</f:for>
+				</p>
+			</f:if>
+		</f:case>
+		<f:case value="artist">
+			<f:if condition="{artist.summary}">
+				<f:format.raw>{artist.summary}</f:format.raw>
+			</f:if>
+		</f:case>
+	</f:switch>
+		</div>
+	</div>
+</f:section>
+
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-10-06" product-name="nj_artgallery">
+		<header/>
+		<body>
+			<trans-unit id="headline.model.exhibition.actualExhibition" xml:space="preserve">
+				<source>Actual exhibition</source>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.participatingArtists" xml:space="preserve">
+				<source>Participating artists</source>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.type.joint" xml:space="preserve">
+				<source>Group exhibition</source>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.type.single" xml:space="preserve">
+				<source>Joint exhibition</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

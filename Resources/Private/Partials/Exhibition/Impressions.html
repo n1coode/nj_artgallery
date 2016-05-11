@@ -1,0 +1,20 @@
+{namespace njVH=N1coode\NjArtgallery\ViewHelpers}
+{namespace njcVH=N1coode\NjCollection\ViewHelpers}
+<div class="impressions clearfix">
+	<div class="collection">
+		<f:for each="{exhibition.impressions}" as="image" iteration="iterator">
+			<div data-uid="{image.uid}" data-index="{iterator.index}">
+				<f:alias map="{width:'465'}">
+					<f:image src="{image.uid}" treatIdAsReference="1" width="{width}" height="{njcVH:ratio(input:width)}c" />
+				</f:alias>
+			</div>
+		</f:for>
+	</div>
+	<div class="navigation">
+		<ul class="clearfix">
+			<f:for each="{exhibition.impressions}" as="nav" iteration="iterator">
+				<li data-uid="{nav.uid}" data-index="{iterator.index}"></li>
+			</f:for>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,24 @@
+
+<div class="info"><div class="artist">{artwork.artist.name}</div><div class="title">{artwork.title}</div></div>
+
+
+<f:if condition="{next}">
+	<div class="next" data-artwork="{next.uid}" data-collection="{arguments.collection}">
+		 <svg width="100%" height="100%" viewBox="0 0 200 250">
+			<line x1="0" y1="0" x2="200" y2="125" style="stroke:rgb(255,255,255);stroke-width:5" />
+			<line x1="200" y1="125" x2="0" y2="250" style="stroke:rgb(255,255,255);stroke-width:5" />
+		  </svg> 
+	</div>
+</f:if>
+<f:if condition="{prev}">
+	<div class="prev" data-artwork="{prev.uid}" data-collection="{arguments.collection}">
+		<svg width="100%" height="100%" viewBox="0 0 200 250">
+		   <line x1="200" y1="0" x2="0" y2="125" style="stroke:rgb(255,255,255);stroke-width:5" />
+		   <line x1="0" y1="125" x2="200" y2="250" style="stroke:rgb(255,255,255);stroke-width:5" />
+		</svg> 
+	</div>
+</f:if>
+
+<div class="artwork">
+	<f:image src="{artwork.image.uid}" alt="" treatIdAsReference="1" maxWidth="{arguments.width}" maxHeight="{arguments.height}" />
+</div>

@@ -1,0 +1,37 @@
+{namespace njVH=N1coode\NjArtgallery\ViewHelpers}
+<f:debug>{_all}</f:debug>
+<div id="tx_njartgallery_header" class="header index clearfix">
+    <div class="theGallery" style="background:url('{f:uri.image(src: 'EXT:nj_artgallery/Resources/Public/Gfx/gallery.png')}') bottom right no-repeat;">
+        <div class="nextVernissage">
+            <f:if condition="{nextVernissage}">
+                <f:then>
+                    <div class="display">
+                        <h2><f:translate key="header.vernissageNext"></f:translate></h2>
+                        <span class="date">
+                            <f:format.date format="d.m.Y - H:i">{nextVernissage.vernissageDate}</f:format.date> Uhr
+                        </span>
+                    </div>
+                    <div class="actualExhibition clearfix">
+                        <f:if condition="{actualExhibition}">
+                            <f:then>
+                                <f:for each="{njVH:RanGalArt(artworks:'{actualExhibition.artworks}')}" as="artwork" iteration="artIterator">
+                                    <div class="artwork no{artIterator.index}">
+                                        <f:if condition="{artIterator.isFirst}">
+                                            <f:then>
+                                                <f:image src="{artwork.uid}" alt="{artwork.title}" width="110"  treatIdAsReference="1" />
+                                            </f:then>
+                                            <f:else>
+                                                <f:image src="{artwork.uid}" alt="{artwork.title}" width="95"  treatIdAsReference="1" />
+                                            </f:else>
+                                        </f:if>
+                                    </div>
+                                </f:for>
+                            </f:then>
+                        </f:if>
+                    </div>
+                </f:then>
+                <f:else></f:else>
+            </f:if>
+        </div>
+    </div>
+</div>

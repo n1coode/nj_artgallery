@@ -1,0 +1,383 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:nj_collection/Resources/Private/Language/locallang_db.xlf:flexform.tab.settingsGeneral</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.flexform.general.typoScript>
+                        <TCEforms>
+                            <onChange>reload</onChange>
+                            <label>LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_be.xml:flexforms.label.general.typoScript</label>
+                            <config>
+                                <type>select</type>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_be.xml:flexforms.option.general.no</numIndex>
+                                        <numIndex index="1">0</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_be.xml:flexforms.option.general.yes</numIndex>
+                                        <numIndex index="1">1</numIndex>
+                                    </numIndex>
+                                </items>
+                                <maxitems>1</maxitems>
+                                <size>1</size>
+                            </config>
+                        </TCEforms>
+                    </settings.flexform.general.typoScript>
+
+                   
+
+                    <!-- View -->
+                    <switchableControllerActions>
+                        <TCEforms>
+                            <label>LLL:EXT:nj_collection/Resources/Private/Language/locallang_db.xlf:flexform.label.mode</label>
+                            <onChange>reload</onChange>
+                            <config>
+                                <type>select</type>
+                                <items>
+                                    <numIndex index="1">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.header.artists</numIndex>
+                                        <numIndex index="1">Header->artists</numIndex>
+                                    </numIndex>
+									<numIndex index="2">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.header.contact</numIndex>
+                                        <numIndex index="1">Header->contact</numIndex>
+                                    </numIndex>
+									<numIndex index="3">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.header.exhibitions</numIndex>
+                                        <numIndex index="1">Header->exhibitions</numIndex>
+                                    </numIndex>
+									<numIndex index="4">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.header.startpage</numIndex>
+                                        <numIndex index="1">Header->startpage</numIndex>
+                                    </numIndex>
+                                    <numIndex index="11">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.exhibition.index</numIndex>
+                                        <numIndex index="1">Exhibition->index</numIndex>
+                                    </numIndex>
+                                    <numIndex index="12">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.exhibition.list</numIndex>
+                                        <numIndex index="1">Exhibition->list</numIndex>
+                                    </numIndex>
+                                    <numIndex index="13">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.exhibition.actual</numIndex>
+                                        <numIndex index="1">Exhibition->actual</numIndex>
+                                    </numIndex>
+                                    <numIndex index="14">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.exhibition.actualTeaser</numIndex>
+                                        <numIndex index="1">Exhibition->actualTeaser</numIndex>
+                                    </numIndex>
+                                    <numIndex index="15">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.exhibition.focus</numIndex>
+                                        <numIndex index="1">Exhibition->focus;Ajax->image</numIndex>
+                                    </numIndex>
+									<numIndex index="16">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.exhibition.tinyList</numIndex>
+                                        <numIndex index="1">Exhibition->tinyList</numIndex>
+                                    </numIndex>
+                                    <numIndex index="21">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.artist.index</numIndex>
+                                        <numIndex index="1">Artist->index</numIndex>
+                                    </numIndex>
+                                    <numIndex index="22">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.artist.list</numIndex>
+                                        <numIndex index="1">Artist->list;Artist->focus</numIndex>
+                                    </numIndex>
+
+                                    <numIndex index="23">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.artist.focus</numIndex>
+                                        <numIndex index="1">Artist->focus;Ajax->image</numIndex>
+                                    </numIndex>
+
+                                    <numIndex index="31">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.artwork.index</numIndex>
+                                        <numIndex index="1">Artwork->index</numIndex>
+                                    </numIndex>
+                                    <numIndex index="32">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.artwork.list</numIndex>
+                                        <numIndex index="1">Artwork->list</numIndex>
+                                    </numIndex>
+                                    <numIndex index="33">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.artwork.focus</numIndex>
+                                        <numIndex index="1">Artwork->focus</numIndex>
+                                    </numIndex>
+                                    <numIndex index="34">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.artwork.quoteRequest</numIndex>
+                                        <numIndex index="1">Artwork->quoteRequest</numIndex>
+                                    </numIndex>
+                                    <numIndex index="35">
+                                        <numIndex index="0">LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.artwork.showcase</numIndex>
+                                        <numIndex index="1">Artwork->showcase</numIndex>
+                                    </numIndex>
+                                </items> 
+                            </config>
+                        </TCEforms>
+                    </switchableControllerActions>
+                </el>
+            </ROOT>
+        </sDEF>
+		<sCONTROLLER_ARTIST_PIDS>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.tab.pageIds</sheetTitle>
+					<displayCond>
+						<AND>
+							<OR>
+								<numIndex><![CDATA[FIELD:sDEF.switchableControllerActions:=:Artist->list;Artist->focus]]></numIndex>
+							</OR>
+						</AND>
+					</displayCond>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.flexform.settings.model.artist.pid.focus>
+						<TCEforms> 
+							<label>Seiten-ID mit der Einzelansicht:</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+							</config>	
+					</TCEforms>
+					</settings.flexform.settings.model.artist.pid.focus>
+					<settings.flexform.settings.model.artist.pid.list>
+						<TCEforms> 
+							<label>Seiten-ID mit der Listen-Ansicht:</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+							</config>	
+						</TCEforms>
+					</settings.flexform.settings.model.artist.pid.list>
+				</el>
+			</ROOT>
+		</sCONTROLLER_ARTIST_PIDS>
+		<sCONTROLLER_EXHIBITION_PIDS>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:nj_collection/Resources/Private/Language/locallang_db.xlf:flexform.tab.pageIds</sheetTitle>
+					<displayCond>
+						<AND>
+							<OR>
+								<numIndex><![CDATA[FIELD:sDEF.switchableControllerActions:=:Exhibition->actual]]></numIndex>
+							</OR>
+							<OR>
+								<numIndex><![CDATA[FIELD:sDEF.switchableControllerActions:=:Exhibition->actualTeaser]]></numIndex>
+							</OR>
+						</AND>
+					</displayCond>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.flexform.settings.model.artist.pid.focus>
+						<TCEforms> 
+							<label>Seiten-ID Künstler Einzelansicht:</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+							</config>	
+					</TCEforms>
+					</settings.flexform.settings.model.artist.pid.focus>
+					<settings.flexform.settings.model.exhibition.pid.focus>
+						<TCEforms> 
+							<label>Seiten-ID mit der Einzelansicht:</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+							</config>	
+						</TCEforms>
+					</settings.flexform.settings.model.exhibition.pid.focus>
+					<settings.flexform.settings.model.exhibition.pid.list>
+						<TCEforms> 
+							<label>Seiten-ID mit der Listen-Ansicht:</label>
+							<config>
+								<type>group</type>
+								<internal_type>db</internal_type>
+								<allowed>pages</allowed>
+								<size>1</size>
+								<maxitems>1</maxitems>
+								<minitems>0</minitems>
+							</config>	
+						</TCEforms>
+					</settings.flexform.settings.model.exhibition.pid.list>
+				</el>
+			</ROOT>
+		</sCONTROLLER_EXHIBITION_PIDS>
+		<sCONTROLLER_EXHIBITION_ACTION_ACTUAL>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.tab.controller.exhibition</sheetTitle>
+					<displayCond><![CDATA[FIELD:sDEF.switchableControllerActions:=:Exhibition->actual]]></displayCond>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.flexform.settings.model.exhibition.actual.version>
+						<TCEforms>
+							<label>LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:label.general.version</label>
+							<config>
+  								<type>radio</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">Standard</numIndex>
+										<numIndex index="1">standard</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">Body only</numIndex>
+										<numIndex index="1">body</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">Header only</numIndex>
+										<numIndex index="1">header</numIndex>
+									</numIndex>
+								</items>
+								<default>standard</default>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>	
+					</settings.flexform.settings.model.exhibition.actual.version>
+					<settings.flexform.settings.model.exhibition.list.limit>
+						<TCEforms>
+							<label>Limit</label>
+							<config>
+  								<type>input</type>
+								<size>5</size>
+							</config>
+						</TCEforms>	
+					</settings.flexform.settings.model.exhibition.list.limit>
+				</el>
+			</ROOT>
+		</sCONTROLLER_EXHIBITION_ACTION_ACTUAL>
+		<sCONTROLLER_EXHIBITION_ACTION_LIST>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.tab.controller.exhibition</sheetTitle>
+					<displayCond><![CDATA[FIELD:sDEF.switchableControllerActions:=:Exhibition->list]]></displayCond>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.flexform.settings.model.exhibition.list.version>
+						<TCEforms>
+							<label>LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:label.general.version</label>
+							<config>
+  								<type>radio</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">Standard</numIndex>
+										<numIndex index="1">standard</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">Tiny</numIndex>
+										<numIndex index="1">tiny</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">Next</numIndex>
+										<numIndex index="1">next</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">Past</numIndex>
+										<numIndex index="1">past</numIndex>
+									</numIndex>
+								</items>
+								<default>standard</default>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>	
+					</settings.flexform.settings.model.exhibition.list.version>
+					<settings.flexform.settings.model.exhibition.list.limit>
+						<TCEforms>
+							<label>Limit</label>
+							<config>
+  								<type>input</type>
+								<size>5</size>
+							</config>
+						</TCEforms>	
+					</settings.flexform.settings.model.exhibition.list.limit>
+				</el>
+			</ROOT>
+		</sCONTROLLER_EXHIBITION_ACTION_LIST>
+		<sCONTROLLER_ARTIST_ACTION_LIST>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.artist.list</sheetTitle>
+					<displayCond><![CDATA[FIELD:sDEF.switchableControllerActions:=:Artist->list;Artist->focus]]></displayCond>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.flexform.settings.model.artist.list.version>
+						<TCEforms>
+							<label>LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:label.general.version</label>
+							<config>
+  								<type>radio</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">Horizontal</numIndex>
+										<numIndex index="1">horizontal</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">Vertical</numIndex>
+										<numIndex index="1">vertical</numIndex>
+									</numIndex>
+								</items>
+								<default>vertical</default>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>	
+					</settings.flexform.settings.model.artist.list.version>
+				</el>
+			</ROOT>
+		</sCONTROLLER_ARTIST_ACTION_LIST>
+		<sCONTROLLER_HEADER_ACTION_STARTPAGE>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.header.startpage</sheetTitle>
+					<displayCond><![CDATA[FIELD:sDEF.switchableControllerActions:=:Header->startpage]]></displayCond>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.flexform.settings.model.artist.list.version>
+						<TCEforms>
+							<label>LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:label.general.version</label>
+							<config>
+  								<type>radio</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">Horizontal</numIndex>
+										<numIndex index="1">horizontal</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">Vertical</numIndex>
+										<numIndex index="1">vertical</numIndex>
+									</numIndex>
+								</items>
+								<default>vertical</default>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>	
+					</settings.flexform.settings.model.artist.list.version>
+				</el>
+			</ROOT>
+		</sCONTROLLER_HEADER_ACTION_STARTPAGE>
+    </sheets>
+</T3DataStructure>

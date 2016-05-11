@@ -1,0 +1,30 @@
+DIV.tx_njartgallery.artwork.focus > DIV.status
+{
+	margin: 10px 0 0 0;
+	padding: 0 0 10px 0;
+	border-bottom: 1px solid #cccccc; 
+}
+
+DIV.tx_njartgallery.artwork.focus > DIV.status DIV.sign
+{
+    float: left;
+	width:20px;
+    height:20px;
+    background:#ff0000;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+}
+DIV.tx_njartgallery.artwork.focus > DIV.status DIV.note
+{
+	float: left;
+	height: 20px;
+	line-height: 20px;
+	font-size: 13px;
+	padding: 0 0 0 5px;
+}
+
+DIV.tx_njartgallery.artwork.focus > DIV.artInfo
+{
+	margin: 10px 0 0 0;
+}

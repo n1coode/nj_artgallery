@@ -1,0 +1,16 @@
+{namespace njVH=N1coode\NjArtgallery\ViewHelpers}
+<f:debug>{_all}</f:debug>
+<div class="{ext.key} {ext.domain} {ext.action}">
+	<f:if condition="{artworks}">
+		<f:then>
+			<ul>
+				<f:for each="{artworks}" as="artwork" iteration="iterator">
+					<li><div class="title">{artwork.title}</div></li>
+				</f:for>
+			</ul>
+		</f:then>
+		<f:else>
+			<div class="n1message">no artworks found</div>
+		</f:else>
+	</f:if>
+</div>

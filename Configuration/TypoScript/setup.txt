@@ -1,0 +1,79 @@
+# Plugin configuration
+plugin.tx_njartgallery {
+	settings {
+ 		general {
+			ajax {
+                typeNum = 6512784255379
+            }
+			includeJQuery = {$plugin.tx_njartgallery.settings.general.includeJQuery}
+			includeCss = {$plugin.tx_njartgallery.settings.general.includeCss}
+			cssFile = {$plugin.tx_njartgallery.settings.general.cssFile}
+		}
+		model {
+			exhibition { 
+				pid {
+					archive = {$plugin.tx_njartgallery.settings.model.exhibition.pid.archive}
+					focus = {$plugin.tx_njartgallery.settings.model.exhibition.pid.focus}
+					list = {$plugin.tx_njartgallery.settings.model.exhibition.pid.list}
+					
+				}
+			}
+		}
+    }
+    
+    persistence {
+		storagePid = {$plugin.tx_njartgallery.persistence.storagePid}
+	}
+	
+	view {
+		templateRootPath = {$plugin.tx_njartgallery.view.templateRootPath}
+		partialRootPath = {$plugin.tx_njartgallery.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_njartgallery.view.layoutRootPath}
+	}
+}
+
+
+#
+# AJAX Page Prototype
+# typeNum: nj_artgallery -> handykeyboard -> 6512784255379
+#
+lib.AJAXPrototype= PAGE
+lib.AJAXPrototype {
+	typeNum = 6512784255379
+	config {
+		disableAllHeaderCode = 1
+		xhtml_cleaning = 0
+		admPanel = 0
+		debug = 0
+		no_cache = 1
+		additionalHeaders = Content-type:application/json
+	}
+}
+ 
+ 
+#
+# my AjaxType 
+#
+AJAX_njartgallery < lib.AJAXPrototype
+AJAX_njartgallery {
+	typeNum = 6512784255379
+	 
+	10 = USER
+	10 {
+		userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+		vendorName = N1coode
+		extensionName = NjArtgallery
+		pluginName = Pi1
+		settings =< plugin.tx_njportfolio.settings
+    	persistence =< plugin.tx_njportfolio.persistence
+    	view =< plugin.tx_njportfolio.view
+		switchableControllerActions {
+            Ajax {
+				1 = image
+            }
+        }
+	}
+}
+
+
+

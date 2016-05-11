@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-10-06" product-name="nj_collection">
+		<header/>
+		<body>
+			<trans-unit id="flexform.controller.artist.focus" xml:space="preserve">
+				<source>Artist &#171; Focus &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artist.index" xml:space="preserve">
+				<source>Artist &#171; Index &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artist.list" xml:space="preserve">
+				<source>Artist &#171; List &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artwork.focus" xml:space="preserve">
+				<source>Artwork &#171; Focus &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artwork.index" xml:space="preserve">
+				<source>Artwork &#171; Index &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artwork.list" xml:space="preserve">
+				<source>Artwork &#171; List &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artwork.quoteRequest" xml:space="preserve">
+				<source>Artwork &#171; Quote request &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artwork.showcase" xml:space="preserve">
+				<source>Artwork &#171; Showcase &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.exhibition.actual" xml:space="preserve">
+				<source>Exhibition &#171; Actual exhibition &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.exhibition.actualTeaser" xml:space="preserve">
+				<source>Exhibition &#171; Teaser &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.exhibition.focus" xml:space="preserve">
+				<source>Exhibition &#171; Focus &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.exhibition.index" xml:space="preserve">
+				<source>Exhibition &#171; Index &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.exhibition.list" xml:space="preserve">
+				<source>Exhibition &#171; List &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.exhibition.tinyList" xml:space="preserve">
+				<source>Exhibition &#171; Tiny list &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.header.artists" xml:space="preserve">
+				<source>Header &#171; Artists &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.header.contact" xml:space="preserve">
+				<source>Header &#171; Contact &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.header.exhibitions" xml:space="preserve">
+				<source>Header &#171; Exhibitions &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.header.index" xml:space="preserve">
+				<source>Header &#171; Index &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.controller.header.startpage" xml:space="preserve">
+				<source>Header &#171; Startpage &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.tab.controller.exhibition" xml:space="preserve">
+				<source>Settings &#171; Exhibition &#187;</source>
+			</trans-unit>
+			<trans-unit id="flexform.tab.pageIds" xml:space="preserve">
+				<source>&#171; Page-IDs &#187;</source>
+			</trans-unit>
+			<trans-unit id="label.general.artist" xml:space="preserve">
+				<source>Artist</source>
+			</trans-unit>
+			<trans-unit id="label.general.artists" xml:space="preserve">
+				<source>Artists</source>
+			</trans-unit>
+			<trans-unit id="label.general.artwork" xml:space="preserve">
+				<source>Artwork</source>
+			</trans-unit>
+			<trans-unit id="label.general.artworks" xml:space="preserve">
+				<source>Artworks</source>
+			</trans-unit>
+			<trans-unit id="label.general.version" xml:space="preserve">
+				<source>Version</source>
+			</trans-unit>
+			<trans-unit id="label.model.artist.advertise" xml:space="preserve">
+				<source>Advertise / highlight</source>
+			</trans-unit>
+			<trans-unit id="label.model.artist.enableEntireName" xml:space="preserve">
+				<source>Show entire name</source>
+			</trans-unit>
+			<trans-unit id="label.model.artist.finishedTraining" xml:space="preserve">
+				<source>Finished trainining in arts</source>
+			</trans-unit>
+			<trans-unit id="label.model.artist.permanent" xml:space="preserve">
+				<source>Permanent cooporation</source>
+			</trans-unit>
+			<trans-unit id="label.model.artist.summary" xml:space="preserve">
+				<source>Short summary</source>
+			</trans-unit>
+			<trans-unit id="label.model.artist.uni" xml:space="preserve">
+				<source>University</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.creationYear" xml:space="preserve">
+				<source>Creation year</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.dimensions" xml:space="preserve">
+				<source>Dimensions (specification in cm)</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.height" xml:space="preserve">
+				<source>Height</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.media" xml:space="preserve">
+				<source>Media</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.motives" xml:space="preserve">
+				<source>Motives</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.onSale" xml:space="preserve">
+				<source>On sale</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.showcase" xml:space="preserve">
+				<source>Present in showcase</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.sold" xml:space="preserve">
+				<source>Sold</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.usedTechniques" xml:space="preserve">
+				<source>Used techniques</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.width" xml:space="preserve">
+				<source>Width</source>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.exhibitionEnd" xml:space="preserve">
+				<source>End of the exhibition</source>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.exhibitionStart" xml:space="preserve">
+				<source>Start of the exhibition</source>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.impressions" xml:space="preserve">
+				<source>Impressions</source>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.installation" xml:space="preserve">
+				<source>Installation</source>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.teaserImage" xml:space="preserve">
+				<source>Teaser image</source>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.type" xml:space="preserve">
+				<source>Type of exhibition</source>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.vernissageDate" xml:space="preserve">
+				<source>Date of the vernissage</source>
+			</trans-unit>
+			<trans-unit id="model.artist" xml:space="preserve">
+				<source>Artist</source>
+			</trans-unit>
+			<trans-unit id="model.artistcat" xml:space="preserve">
+				<source>Artist category</source>
+			</trans-unit>
+			<trans-unit id="model.artwork" xml:space="preserve">
+				<source>Artwork</source>
+			</trans-unit>
+			<trans-unit id="model.exhibition" xml:space="preserve">
+				<source>Exhibition</source>
+			</trans-unit>
+			<trans-unit id="plugin.title" xml:space="preserve">
+				<source>njs Art gallery</source>
+			</trans-unit>
+			<trans-unit id="select.model.exhibition.type.jointExhibition" xml:space="preserve">
+				<source>Joint exhibition</source>
+			</trans-unit>
+			<trans-unit id="select.model.exhibition.type.soloExhibition" xml:space="preserve">
+				<source>Solo exhibition</source>
+			</trans-unit>
+			<trans-unit id="tab.additionalInformation" xml:space="preserve">
+				<source>Additional information</source>
+			</trans-unit>
+			<trans-unit id="tab.artistsAndArtworks" xml:space="preserve">
+				<source>Participating artists / Exhibited artworks</source>
+			</trans-unit>
+			<trans-unit id="tab.categorization" xml:space="preserve">
+				<source>Categorization</source>
+			</trans-unit>
+			<trans-unit id="tab.generalInformation" xml:space="preserve">
+				<source>General information</source>
+			</trans-unit>
+			<trans-unit id="tab.vita" xml:space="preserve">
+				<source>Vita</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

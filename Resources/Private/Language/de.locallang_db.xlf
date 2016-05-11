@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2015-10-06" product-name="nj_collection">
+		<header/>
+		<body>
+			<trans-unit id="flexform.controller.artist.focus" xml:space="preserve">
+				<target>Künstler &#171; Detailansicht &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artist.index" xml:space="preserve">
+				<target>Künstler &#171; Index &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artist.list" xml:space="preserve">
+				<target>Künstler &#171; Liste &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artwork.focus" xml:space="preserve">
+				<target>Kunstwerk &#171; Detailansicht &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artwork.index" xml:space="preserve">
+				<target>Kunstwerk &#171; Index &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artwork.list" xml:space="preserve">
+				<target>Kunstwerk &#171; Liste &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artwork.quoteRequest" xml:space="preserve">
+				<target>Kunstwerk &#171; Preisanfrage &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.artwork.showcase" xml:space="preserve">
+				<target>Kunstwerk &#171; Schaufenster &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.exhibition.actual" xml:space="preserve">
+				<target>Vernissage / Ausstellung &#171; Aktuelle Ausstellung &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.exhibition.actualTeaser" xml:space="preserve">
+				<target>Vernissage / Ausstellung &#171; Teaser &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.exhibition.focus" xml:space="preserve">
+				<target>Vernissage / Ausstellung &#171; Detailansicht &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.exhibition.index" xml:space="preserve">
+				<target>Vernissage / Ausstellung &#171; Index &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.exhibition.list" xml:space="preserve">
+				<target>Vernissage / Ausstellung &#171; Liste &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.exhibition.tinyList" xml:space="preserve">
+				<target>Vernissage / Ausstellung &#171; Liste ( Tiny) &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.header.artists" xml:space="preserve">
+				<target>Header &#171; Künstler &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.header.contact" xml:space="preserve">
+				<target>Header &#171; Kontakt &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.header.exhibitions" xml:space="preserve">
+				<target>Header &#171; Ausstellungen &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.header.index" xml:space="preserve">
+				<target>Header &#171; Index &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.controller.header.startpage" xml:space="preserve">
+				<target>Header &#171; Startseite &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.tab.controller.exhibition" xml:space="preserve">
+				<target>Einstellungen &#171; Vernissage / Ausstellung &#187;</target>
+			</trans-unit>
+			<trans-unit id="flexform.tab.pageIds" xml:space="preserve">
+				<target>&#171; Page-IDs &#187;</target>
+			</trans-unit>
+			<trans-unit id="label.general.artist" xml:space="preserve">
+				<target>Künstler</target>
+			</trans-unit>
+			<trans-unit id="label.general.artists" xml:space="preserve">
+				<target>Künstler</target>
+			</trans-unit>
+			<trans-unit id="label.general.artwork" xml:space="preserve">
+				<target>Kunstwerk</target>
+			</trans-unit>
+			<trans-unit id="label.general.artworks" xml:space="preserve">
+				<target>Kunstwerke</target>
+			</trans-unit>
+			<trans-unit id="label.general.version" xml:space="preserve">
+				<target>Version</target>
+			</trans-unit>
+			<trans-unit id="label.model.artist.advertise" xml:space="preserve">
+				<target>Bewerben / hervorheben</target>
+			</trans-unit>
+			<trans-unit id="label.model.artist.enableEntireName" xml:space="preserve">
+				<target>Kompletten Namen anzeigen</target>
+			</trans-unit>
+			<trans-unit id="label.model.artist.finishedTraining" xml:space="preserve">
+				<target>Abgeschlossene Kunstausbildung</target>
+			</trans-unit>
+			<trans-unit id="label.model.artist.permanent" xml:space="preserve">
+				<target>Feste Zusammenarbeit</target>
+			</trans-unit>
+			<trans-unit id="label.model.artist.summary" xml:space="preserve">
+				<target>Kurze Zusammenfassung</target>
+			</trans-unit>
+			<trans-unit id="label.model.artist.uni" xml:space="preserve">
+				<target>Universität</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.creationYear" xml:space="preserve">
+				<target>Erstellungsjahr</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.dimensions" xml:space="preserve">
+				<target>Maße (Angabe in cm)</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.height" xml:space="preserve">
+				<target>Höhe</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.media" xml:space="preserve">
+				<target>Medien</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.motives" xml:space="preserve">
+				<target>Motive</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.onSale" xml:space="preserve">
+				<target>Zu verkaufen</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.showcase" xml:space="preserve">
+				<target>Im "Schaufenster" ausstellen</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.sold" xml:space="preserve">
+				<target>Verkauft</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.width" xml:space="preserve">
+				<target>Breite</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.usedTechniques" xml:space="preserve">
+				<target>Eingesetzte Techniken</target>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.exhibitionEnd" xml:space="preserve">
+				<target>Austellungsende</target>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.exhibitionStart" xml:space="preserve">
+				<target>Ausstellungsbeginn</target>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.impressions" xml:space="preserve">
+				<target>Impressionen</target>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.installation" xml:space="preserve">
+				<target>Installation</target>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.teaserImage" xml:space="preserve">
+				<target>Teaser-Bild</target>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.type" xml:space="preserve">
+				<target>Art der Ausstellung</target>
+			</trans-unit>
+			<trans-unit id="label.model.exhibition.vernissageDate" xml:space="preserve">
+				<target>Termin der Vernissage</target>
+			</trans-unit>
+			<trans-unit id="model.artist" xml:space="preserve">
+				<target>Künstler</target>
+			</trans-unit>
+			<trans-unit id="model.artistcat" xml:space="preserve">
+				<target>Künstlerkategorie</target>
+			</trans-unit>
+			<trans-unit id="model.artwork" xml:space="preserve">
+				<target>Kunstwerk</target>
+			</trans-unit>
+			<trans-unit id="model.exhibition" xml:space="preserve">
+				<target>Ausstellung / Vernissage</target>
+			</trans-unit>
+			<trans-unit id="plugin.title" xml:space="preserve">
+				<target>njs Kunstgalerie</target>
+			</trans-unit>
+			<trans-unit id="select.model.exhibition.type.jointExhibition" xml:space="preserve">
+				<target>Gruppenausstellung</target>
+			</trans-unit>
+			<trans-unit id="select.model.exhibition.type.soloExhibition" xml:space="preserve">
+				<target>Einzelausstellung</target>
+			</trans-unit>
+			<trans-unit id="tab.additionalInformation" xml:space="preserve">
+				<target>Zusätzliche Angaben</target>
+			</trans-unit>
+			<trans-unit id="tab.artistsAndArtworks" xml:space="preserve">
+				<target>Teilnehmende Künstler / Ausgestellte Kunstwerke</target>
+			</trans-unit>
+			<trans-unit id="tab.categorization" xml:space="preserve">
+				<target>Kategorisierung</target>
+			</trans-unit>
+			<trans-unit id="tab.generalInformation" xml:space="preserve">
+				<target>Allgemeine Informationen</target>
+			</trans-unit>
+			<trans-unit id="tab.vita" xml:space="preserve">
+				<target>Vita</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
