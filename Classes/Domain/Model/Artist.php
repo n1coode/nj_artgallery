@@ -13,6 +13,28 @@ class Artist extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $advertise;
     
+	/**
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\N1coode\NjArtgallery\Domain\Model\ArtistCat>
+     * @lazy
+     * @cascade remove
+     */
+    protected $categories;
+	
+	/**
+	 * @var string
+	 */
+	protected $city;
+	
+	/**
+	 * @var string 
+	 */
+	protected $country;
+	
+	/**
+	 * @var int
+	 */
+	protected $enableEntireName;
+	
     /**
      * @var int
      */
@@ -24,9 +46,9 @@ class Artist extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $firstName;
 	
 	/**
-	 * @var int
+	 * @var int 
 	 */
-	protected $enableEntireName;
+	protected $gender;
 	
 	/**
      * @var string
@@ -43,16 +65,25 @@ class Artist extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	 */
 	protected $permanent;
 
-
 	/**
      * @var string
      */
     protected $summary;
-    
+ 
+	/**
+	 * @var array 
+	 */
+	protected $studies = NULL;
+	
 	/**
 	 * @var \N1coode\NjArtgallery\Domain\Model\Artwork
 	 */
 	protected $teaserArtwork;
+	
+	/**
+	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+	 */
+	protected $teaserImage;
 	
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\N1coode\NjArtgallery\Domain\Model\Uni>
@@ -104,7 +135,80 @@ class Artist extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->advertise = $advertise;
     }
     
+	
+	/**
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\N1coode\NjArtgallery\Domain\Model\ArtistCat>
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+	
+	/**
+	 * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\N1coode\NjArtgallery\Domain\Model\ArtistCat> $categories
+	 * @return void
+	 */
+	public function setCategories($categories)
+	{
+		$this->categories = $categories;
+	}
+	
+	
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
     
+    /**
+     * @param string $city
+     * @return void
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+	
+	
+	/**
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+    
+    /**
+     * @param string $country
+     * @return void
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+	
+	
+	/**
+     * @return int
+     */
+    public function getEnableEntireName()
+    {
+        return $this->enableEntireName;
+    }
+
+    /**
+     * @param int $enableEntireName
+     * @return void
+     * @api
+     */
+    public function setEnableEntireName($enableEntireName)
+    {
+        $this->enableEntireName = $enableEntireName;
+    }
+	
+	
     /**
      * Getter for the option finished training
      *
@@ -143,6 +247,25 @@ class Artist extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+    }
+	
+	
+	/**
+     * @return int
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * @param int $gender
+     * @return void
+     * @api
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
     }
 	
 	
@@ -235,25 +358,6 @@ class Artist extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	/**
      * @return int
      */
-    public function getEnableEntireName()
-    {
-        return $this->enableEntireName;
-    }
-
-    /**
-     * @param int $enableEntireName
-     * @return void
-     * @api
-     */
-    public function setEnableEntireName($enableEntireName)
-    {
-        $this->enableEntireName = $enableEntireName;
-    }
-	
-	
-	/**
-     * @return int
-     */
     public function getPermanent()
     {
         return $this->permanent;
@@ -267,6 +371,54 @@ class Artist extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->permanent = $permanent;
     }
+	
+	
+	/**
+     * @return array
+     */
+    public function getStudies()
+    {
+		return $this->studies;
+    }
+	
+	/**
+	 * @param \N1coode\NjArtgallery\Domain\Model\ArtistVita $vita
+	 */
+	public function pushStudies($vita)
+	{
+		if($this->studies === NULL)
+		{
+			$this->studies = [];
+		}
+		$this->studies[] = $vita;
+	}
+	
+    /**
+	 * @param array $studies
+     * @return void
+     */
+    public function setStudies($studies)
+    {
+        $this->studies = $studies;
+    }
+	
+	
+	/**
+	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference
+	 */
+	public function getTeaserImage()
+	{
+		return $this->teaserImage;
+	}
+	
+	/**
+	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $teaserImage
+	 * @return void
+	 */
+	public function setTeaserImage($teaserImage)
+	{
+		$this->teaserImage = $teaserImage;
+	}
 	
 	
     /**

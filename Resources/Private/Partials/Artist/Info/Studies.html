@@ -1,0 +1,10 @@
+<f:if condition="{artist.studies}">
+	<div class="studies">
+		<f:comment><f:translate key="{ext.langFile}label.model.artist.studies" />:</f:comment>
+		<ul data-info="studies">
+			<f:for each="{artist.studies}" as="study" iteration="i">
+				<li><date>{study.dateFrom} - {study.dateTo}</date> {study.uni.name}<f:if condition="{study.degree}"> <br/>(<f:translate key="{ext.langFile}label.model.artist.degree" />: {study.degree})</f:if></li>
+			</f:for>
+		</ul>
+	</div>
+</f:if>

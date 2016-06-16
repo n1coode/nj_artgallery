@@ -18,7 +18,7 @@ class ArtworkCat extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	 * @var string
 	 * @validate StringLength(minimum = 3, maximum = 255)
 	 */
-	protected $name;
+	protected $title;
 	
 	
 	/* ***************************************************** */
@@ -57,25 +57,20 @@ class ArtworkCat extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	
 	
 	/**
-	 * Setter for the name
-	 *
-	 * @param string $name
+	 * @param string $title
 	 * @return void
 	 */
-	public function setName($name)
+	public function seTitle($title)
 	{
-		$this->name = $name;
+		$this->title = $title;
 	}
 	
 	/**
-	 * Getter for the name
-	 *
 	 * @return string
 	 */
-	public function getName()
+	public function getTitle()
 	{
-		return $this->name;
+		return $this->title;
 	}
 	
-} //end of class Tx_NjArtgallery_Domain_Model_ArtworkCat
-?>
+} //end of class

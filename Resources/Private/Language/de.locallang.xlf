@@ -6,6 +6,24 @@
 			<trans-unit id="headline.model.exhibition.actualExhibition" xml:space="preserve">
 				<target>Aktuelle Ausstellung</target>
 			</trans-unit>
+			<trans-unit id="label.general.artist.0" xml:space="preserve">
+				<target>Künstlerin</target>
+			</trans-unit>
+			<trans-unit id="label.general.artist.1" xml:space="preserve">
+				<target>Künstler</target>
+			</trans-unit>
+			<trans-unit id="label.general.on" xml:space="preserve">
+				<target>auf</target>
+			</trans-unit>
+			<trans-unit id="label.general.readmore" xml:space="preserve">
+				<target>weiterlesen</target>
+			</trans-unit>
+			<trans-unit id="label.model.artist.degree" xml:space="preserve">
+				<target>Abschluss</target>
+			</trans-unit>
+			<trans-unit id="label.model.artist.studies" xml:space="preserve">
+				<target>Studium</target>
+			</trans-unit>
 			<trans-unit id="label.model.exhibition.participatingArtists" xml:space="preserve">
 				<target>Teilnehmende Künstler</target>
 			</trans-unit>

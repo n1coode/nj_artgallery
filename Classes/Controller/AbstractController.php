@@ -189,21 +189,7 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	private function includeJavaScript()
 	{
 		$this->getPageRenderer()
-			->addJsLibrary(
-				'jQuery_'.$this->nj_ext_namespace,
-				\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('nj_collection') . 'Resources/Public/Javascript/Lib/jquery/plugins/jquery.masonry.pkgd.min.js');
-
-		$this->getPageRenderer()
-			->addJsFile(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('nj_artgallery') . 'Resources/Public/Javascript/tx_njartgallery_frontend.js');
-	
-		$this->getPageRenderer()
-			->addJsFooterFile(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('nj_artgallery') . 'Resources/Public/Javascript/tx_njartgallery_footer.js');
-		
-			
-			
-			
-		
-		
+			->addJsFooterFile(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('nj_artgallery') . 'Resources/Public/Javascript/tx_njartgallery_frontend.js');
 	}
 	
 	
@@ -213,6 +199,9 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	protected function getJsSettings()
 	{
 		$jsSettings = [];
+		$jsSettings['variableName'] = '_'.$this->nj_ext_key.'_'.$this->nj_domain.'_'.explode('Action',self::getCaller())[0];
+		$jsSettings['container'] = '.'.$this->nj_ext_key.'.'.$this->nj_domain.'.'.explode('Action',self::getCaller())[0];
+		
 		
 		$jsSettings['lang']['id'] = $GLOBALS['TSFE']->sys_language_uid;
 		$jsSettings['lang']['iso'] = strtolower($GLOBALS['TSFE']->sys_language_isocode);

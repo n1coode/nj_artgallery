@@ -1,39 +1,64 @@
-{namespace njVH=N1coode\NjArtgallery\ViewHelpers}
+{namespace f=N1coode\NjArtgallery\ViewHelpers}
+{namespace f=N1coode\NjPage\ViewHelpers}
+{namespace f=N1coode\NjCollection\ViewHelpers}
 <f:if condition="{artist}">
     <f:then>
-        <div class="tx_njartgallery artist focus clearfix">
-            <h2>{artist.name}</h2>
-            <f:if condition="{artist.summary}">
-                <div class="summary">
-                    <f:format.raw value="{artist.summary}"></f:format.raw>
-                </div>
-            </f:if>
-            <f:if condition="{artworks}">
-                <div class="artworks clearfix">
-                    <f:for each="{artworks}" as="artwork" iteration="artworkIterator">
-                        <f:if condition="{artwork.image}">
-                            <div class="thumbnail" data-artwork="{artwork.uid}">
-                                <f:image src="{artwork.image.uid}" treatIdAsReference="1" alt="" height="150"></f:image>
-                            </div>
-                        </f:if>
-                    </f:for>
-                </div>
-            </f:if>
-			<f:if condition="{artist.vita}">
-				<div class="vita">
-					<h3>Vita</h3>
-					<ul>
-						<f:for each="{artist.vita}" as="vita" iteration="iterator">
-							<li class="n1flex group">
-								<span class="flexitem col3of12">{vita.dateFrom}</span>
-								<span class="flexitem col9of12"><f:format.raw>{vita.content}</f:format.raw></span>
-							</li>
-						</f:for>
-					</ul>
-				</div>
-			</f:if>
-			<f:render partial="JavascriptArguments" arguments="{js:js}"></f:render>
-        </div>
+		<f:render section="{version}" arguments="{_all}" />
     </f:then>
     <f:else>Message: no artist selected</f:else>
 </f:if>
+
+<f:section name="complete">
+	<f:wrap.section type="header" role="header">
+		<f:render section="header" arguments="{_all}" />
+	</f:wrap.section>
+	<f:wrap.section type="main">
+		<f:render section="artworks" arguments="{_all}" />
+	</f:wrap.section>
+</f:section>
+
+<f:section name="header">
+	<f:wrap.action ext="{ext}" class="header">
+		<div class="n1flex">
+			<div class="flexitem col8of12">
+				<div class="headline">
+					<f:render partial="Artist/Info/Categories" arguments="{artist:artist}" />
+					<h1><span class="label"><f:translate key="{ext.langFile}label.general.artist.{artist.gender}" />:</span> {artist.name}</h1>
+					<f:render partial="Artist/Info/Location" arguments="{artist:artist}" />
+				</div>
+				<f:render partial="Artist/Info/Studies" arguments="{artist:artist,ext:ext}" />
+				<div class="summary"><p><f:format.raw>{artist.summary}</f:format.raw></p></div>
+			</div>
+			<div class="flexitem col4of12">
+				<f:if condition="{artist.teaserImage}">
+					<f:then>
+						<f:alias map="{height:'1080',width:'630'}">
+							<div class="teaser imgfix"><f:image src="{artist.teaserImage.uid}" treatIdAsReference="1" height="{height}" width="{width}c" /></div>
+						</f:alias>
+					</f:then>
+				</f:if>
+			</div>
+		</div>
+	</f:wrap.action>
+</f:section>
+
+<f:section name="artworks">
+	<f:wrap.action ext="{ext}" class="artworks">
+		<div class="grid masonry artworks">
+			<div class="grid-sizer"></div>
+			<div class="gutter-sizer"></div>
+			<f:for each="{artworks}" as="artwork" iteration="artworkIterator">
+				<f:if condition="!{artworkIterator.isFirst}">
+					<f:if condition="{artwork.image}">
+						<div class="grid-item">
+							<div class="artwork">
+								<f:image src="{artwork.image.uid}" treatIdAsReference="1" alt="" width="620"></f:image>
+								<f:render partial="Artwork/Info" arguments="{artwork:artwork,ext:ext}" />
+							</div>
+						</div>
+					</f:if>
+				</f:if>
+			</f:for>
+		</div>
+	</f:wrap.action>
+</f:section>

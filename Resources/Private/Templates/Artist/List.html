@@ -1,31 +1,26 @@
-{namespace njVH=N1coode\NjArtgallery\ViewHelpers}
+{namespace f=N1coode\NjArtgallery\ViewHelpers}
+{namespace f=N1coode\NjPage\ViewHelpers}
 <f:if condition="{artists}">
-    <f:then>
-		<div class="{ext.key} {ext.domain} {ext.action} {ext.version} clearfix">
-<f:switch expression="{ext.version}">
-	<f:case value="horizontal">
-		<ul>
-			<f:for each="{artists}" as="artist" iteration="iterator">
-				<li><f:render section="artistName" arguments="{artist:artist}" /></li>
-			</f:for>
-		</ul>
-	</f:case>
-	<f:case value="vertical">
-		<f:render partial="Grid" arguments="{_all}" />
-	</f:case>
-</f:switch>
-        </div>
-    </f:then>
-    <f:else>
-        Message: no artists found.
-    </f:else>
+	<f:then>
+		<f:wrap.action ext="{ext}" class="{ext.version}">
+			<f:switch expression="{ext.version}">
+				<f:case value="horizontal">
+					<ul>
+						<f:for each="{artists}" as="artist" iteration="iterator">
+							<li><f:render section="artistName" arguments="{artist:artist}" /></li>
+						</f:for>
+					</ul>
+				</f:case>
+				<f:case value="vertical">
+					<f:render partial="Grid" arguments="{_all}" />
+				</f:case>
+			</f:switch>
+		</f:wrap.action>
+	</f:then>
+	<f:else>
+		Message: No Artists found.
+	</f:else>
 </f:if>
-
-<f:comment>
-	<f:if condition="{artist.finishedTraining}">
-		<span class="training">(<f:for each="{artist.universities}" as="university" iteration="uniIteration"><span class="uni" title="{university.name}">{university.nameShort}</span><f:if condition="{uniIteration.isLast}"><f:then></f:then><f:else>, </f:else></f:if></f:for>)</span>
-	</f:if>
-</f:comment> 
 
 <f:section name="artistName">
 	<f:if condition="{artist.advertise}">
@@ -38,85 +33,3 @@
 		<f:else>{artist.name}</f:else>
 	</f:if>
 </f:section>
-
-<f:section name="teaserContainer">
-	<div class="title"><h2>{artist.name}</h2></div>
-	<f:if condition="{artist.teaserArtwork}">
-		<f:alias map="{width:'350'}">
-			<f:image src="{artist.teaserArtwork.image.uid}" treatIdAsReference="1" width="{width}" />
-		</f:alias>
-	</f:if>
-	<f:if condition="{artist.summary}">
-		<div class="intro">
-			<f:format.raw>{artist.summary}</f:format.raw>
-		</div>
-	</f:if>
-</f:section>
-
-<f:comment>
-	<div class="grid">
-			<div class="grid-sizer"></div>
-			<div class="gutter-sizer"></div>
-			<f:for each="{artists}" as="artist" iteration="iterator">
-				<div class="grid-item">
-					<div class="container{f:if(condition:artist.advertise,then:' adv',else:'')}">
-						<f:if condition="{artist.advertise}">
-							<f:then>
-								<f:if condition="{settings.model.artist.pid.focus}">
-									<f:then>
-										<f:link.action pageUid="{settings.model.artist.pid.focus}" action="focus" arguments="{artist:artist}">
-											<f:render section="teaserContainer" arguments="{artist:artist}" />
-										</f:link.action>
-									</f:then>
-									<f:else><f:render section="teaserContainer" arguments="{artist:artist}" /></f:else>
-								</f:if>
-							</f:then>
-							<f:else><f:render section="teaserContainer" arguments="{artist:artist}" /></f:else>
-						</f:if>
-
-					</div>
-				</div>
-			</f:for>
-		</div>
-<script type="text/javascript">
-	$(document).ready(function() 
-	{
-		$('.grid').masonry({
-			itemSelector: '.grid-item',
-			columnWidth: '.grid-sizer',
-			percentPosition: true,
-			gutter: '.gutter-sizer'
-		});
-		
-		
-		var tx_njartgallery_artist_container = '.{ext.key}.{ext.domain}.{ext.action}.{ext.version} .grid-item .container.adv';
-			
-		//$(tx_njartgallery_teaser + " .readmore").hide(0);
-
-		$(document).on("mouseenter",tx_njartgallery_artist_container,function()
-		{
-			$height = $(this).find('IMG').outerHeight();
-			
-			$(this).find("IMG").animate(
-			{
-				width: '110%',
-				height: $height,
-				marginLeft: '-5%',
-				opacity: 0.75
-			},125,function(){$(this).addClass("blur");});
-			
-		});
-		$(document).on("mouseleave",tx_njartgallery_artist_container,function()
-		{
-			$(this).find("IMG").removeClass("blur").animate(
-					{
-						width: '100%',
-						marginLeft: '0',
-						opacity: 1
-					},0);
-			
-		});
-		
-	});
-</script>
-</f:comment>

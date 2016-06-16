@@ -1,0 +1,3 @@
+<f:if condition="{artwork.media}">
+	<f:for each="{artwork.media}" as="medium" iteration="i">{medium.title}<f:if condition="!{i.isLast}">, </f:if></f:for>
+</f:if>

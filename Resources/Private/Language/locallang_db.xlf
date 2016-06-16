@@ -96,11 +96,23 @@
 			<trans-unit id="label.model.artist.summary" xml:space="preserve">
 				<source>Short summary</source>
 			</trans-unit>
-			<trans-unit id="label.model.artist.uni" xml:space="preserve">
+			<trans-unit id="label.model.artistvita.degree" xml:space="preserve">
+				<source>Degree</source>
+			</trans-unit>
+			<trans-unit id="label.model.artistvita.uni" xml:space="preserve">
 				<source>University</source>
 			</trans-unit>
-			<trans-unit id="label.model.artwork.creationYear" xml:space="preserve">
-				<source>Creation year</source>
+			<trans-unit id="label.model.artwork.creation" xml:space="preserve">
+				<source>Creation</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.creationFinished" xml:space="preserve">
+				<source>Finished</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.creationLocation" xml:space="preserve">
+				<source>Location</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.creationStart" xml:space="preserve">
+				<source>Start</source>
 			</trans-unit>
 			<trans-unit id="label.model.artwork.dimensions" xml:space="preserve">
 				<source>Dimensions (specification in cm)</source>
@@ -119,6 +131,9 @@
 			</trans-unit>
 			<trans-unit id="label.model.artwork.showcase" xml:space="preserve">
 				<source>Present in showcase</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.showPrice" xml:space="preserve">
+				<source>Show price</source>
 			</trans-unit>
 			<trans-unit id="label.model.artwork.sold" xml:space="preserve">
 				<source>Sold</source>
@@ -141,9 +156,6 @@
 			<trans-unit id="label.model.exhibition.installation" xml:space="preserve">
 				<source>Installation</source>
 			</trans-unit>
-			<trans-unit id="label.model.exhibition.teaserImage" xml:space="preserve">
-				<source>Teaser image</source>
-			</trans-unit>
 			<trans-unit id="label.model.exhibition.type" xml:space="preserve">
 				<source>Type of exhibition</source>
 			</trans-unit>
@@ -156,6 +168,9 @@
 			<trans-unit id="model.artistcat" xml:space="preserve">
 				<source>Artist category</source>
 			</trans-unit>
+			<trans-unit id="model.artistvita" xml:space="preserve">
+				<source>Vita entry</source>
+			</trans-unit>
 			<trans-unit id="model.artwork" xml:space="preserve">
 				<source>Artwork</source>
 			</trans-unit>
@@ -165,11 +180,17 @@
 			<trans-unit id="plugin.title" xml:space="preserve">
 				<source>njs Art gallery</source>
 			</trans-unit>
-			<trans-unit id="select.model.exhibition.type.jointExhibition" xml:space="preserve">
+			<trans-unit id="select.general.type.artFair" xml:space="preserve">
+				<source>Art fair</source>
+			</trans-unit>
+			<trans-unit id="select.general.type.jointExhibition" xml:space="preserve">
 				<source>Joint exhibition</source>
 			</trans-unit>
-			<trans-unit id="select.model.exhibition.type.soloExhibition" xml:space="preserve">
+			<trans-unit id="select.general.type.soloExhibition" xml:space="preserve">
 				<source>Solo exhibition</source>
+			</trans-unit>
+			<trans-unit id="select.general.type.study" xml:space="preserve">
+				<source>Study</source>
 			</trans-unit>
 			<trans-unit id="tab.additionalInformation" xml:space="preserve">
 				<source>Additional information</source>
@@ -182,6 +203,9 @@
 			</trans-unit>
 			<trans-unit id="tab.generalInformation" xml:space="preserve">
 				<source>General information</source>
+			</trans-unit>
+			<trans-unit id="tab.sale" xml:space="preserve">
+				<source>Sale</source>
 			</trans-unit>
 			<trans-unit id="tab.vita" xml:space="preserve">
 				<source>Vita</source>

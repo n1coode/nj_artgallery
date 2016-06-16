@@ -4,7 +4,7 @@
 	</f:if>
 	<p>
 		<f:for each="{artists}" as="artist" iteration="iterator">
-			<f:if condition="{settings.model.artist.pid.focus}&&{artist.permanent}&&{artist.advertise}"><f:then><f:link.action pageUid="{settings.model.artist.pid.focus}" action="focus" controller="artist" arguments="{artist:artist}">{artist.name}</f:link.action></f:then><f:else>{artist.name}</f:else></f:if><f:if condition="{iterator.isLast}"><f:then></f:then><f:else>, </f:else></f:if>
+			<f:if condition="{settings.model.artist.pid.focus}&&{artist.permanent}&&{artist.advertise}"><f:then><f:link.action pageUid="{settings.model.artist.pid.focus}" action="focus" controller="Artist" arguments="{artist:artist}">{artist.name}</f:link.action></f:then><f:else>{artist.name}</f:else></f:if><f:if condition="{iterator.isLast}"><f:then></f:then><f:else>, </f:else></f:if>
 		</f:for>
 	</p>
 </div>

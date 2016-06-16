@@ -9,46 +9,6 @@ namespace N1coode\NjArtgallery\Domain\Model;
 class Exhibition extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 	/**
-	 * @var string
-	 */
-	protected $title;
-	
-	/**
-	 * @var string
-	 */
-	protected $description;
-	
-	/**
-	 * @var DateTime
-	 */
-	protected $vernissageDate;
-	
-	/**
-	 * @var DateTime
-	 */
-	protected $exhibitionStart;
-	
-	/**
-	 * @var DateTime
-	 */
-	protected $exhibitionEnd;
-	
-	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
-	 */
-    protected $impressions;
-
-	/**
-	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
-	 */
-    protected $installation;
-	
-	/**
-	 * @var int
-	 */
-	protected $type;
-	
-	/**
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\N1coode\NjArtgallery\Domain\Model\Artist>
 	 * @lazy
 	 * @cascade remove
@@ -62,14 +22,53 @@ class Exhibition extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	 */
 	protected $artworks; 
 	
-	/* ***************************************************** */
+	/**
+	 * @var string
+	 */
+	protected $description;
+	
+	/**
+	 * @var DateTime
+	 */
+	protected $exhibitionEnd;
+	
+	/**
+	 * @var DateTime
+	 */
+	protected $exhibitionStart;
+	
+	/**
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+	 */
+    protected $impressions;
+
+	/**
+	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+	 */
+    protected $installation;
 	
 	/**
 	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
 	 */
 	protected $teaserImage;
 	
+	/**
+	 * @var string
+	 */
+	protected $title;
 	
+	/**
+	 * @var int
+	 */
+	protected $type;
+	
+	/**
+	 * @var DateTime
+	 */
+	protected $vernissageDate;
+	
+	
+	/* ***************************************************** */
 	
 	/**
 	 * Constructs a new sheet

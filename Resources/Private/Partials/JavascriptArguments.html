@@ -1,12 +1,16 @@
-<f:alias map="{jsSettings:'_njartgallery_settings'}">
+{namespace f=N1coode\NjCollection\ViewHelpers}
 <script>
-	var {jsSettings} = [];
-	{jsSettings}['langId'] = '{js.lang.id}';
-	{jsSettings}['langIso'] = '{js.lang.iso}';
-	{jsSettings}['typeNum'] = '{js.typeNum}';
-	{jsSettings}['pageId'] = '{js.pageId}';
+	var {js.variableName} = [];
+	{js.variableName}['container'] = '{js.container}';
+	{js.variableName}['langId'] = '{js.lang.id}';
+	{js.variableName}['langIso'] = '{js.lang.iso}';
+	{js.variableName}['typeNum'] = '{js.typeNum}';
+	{js.variableName}['pageId'] = '{js.pageId}';
 </script>
-</f:alias>
+
+
+
+
 <f:Comment>
 	var nj_internship_listDirections_settings                           = new Array();
     nj_internship_listDirections_settings['pid']                        = '{njSettings.page.id}';

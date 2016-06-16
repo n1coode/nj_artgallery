@@ -16,7 +16,7 @@ $nj_domain = strtolower($nj_domain_model);
 return [
 	'ctrl' => [
         'title' => $nj_ext_lang_file.'model.'.$nj_domain,
-        'label' => 'name',
+        'label' => 'title',
         //'l10n_mode' => 'mergeIfNotBlank',
         'tstamp' => 'tstamp',
         'crdate' => 'crdate',
@@ -28,7 +28,7 @@ return [
         'transOrigPointerField' => 'l18n_parent',
         'transOrigDiffSourceField' => 'l18n_diffsource',
 		'type' => '',
-        'default_sortby' => 'ORDER BY name ASC',
+        'default_sortby' => 'ORDER BY title ASC',
         //'sortby' => 'sorting',
         'delete' => 'deleted',
         'enablecolumns' => [
@@ -99,7 +99,7 @@ return [
             ],
         ],
 
-		'name' => [
+		'title' => [
 			'exclude' => 0,
 			'label'   => $nj_collection_lang_file.'label.general.name',
 			'config'  => [
@@ -121,7 +121,7 @@ return [
 		],
     ],
 	'types' => [
-        '0' => ['showitem' => 'hidden,sys_language_uid;;1,name,description']
+        '0' => ['showitem' => 'hidden,sys_language_uid;;1,title,description']
     ],
     'palettes' => [
         '1' => ['showitem' => 'l18n_parent']

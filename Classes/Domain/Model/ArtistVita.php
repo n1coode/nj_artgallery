@@ -11,6 +11,11 @@ class ArtistVita extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	/**
 	 * @var string
 	 */
+	protected $content;
+	
+	/**
+	 * @var string
+	 */
 	protected $dateFrom;
 	
 	/**
@@ -19,9 +24,19 @@ class ArtistVita extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	protected $dateTo;
 	
 	/**
-	 * @var string
+	 * @var string 
 	 */
-	protected $content;
+	protected $degree;
+
+	/**
+	 * @var string 
+	 */
+	protected $vtype;
+	
+	/**
+	 * @var \N1coode\NjArtgallery\Domain\Model\Uni 
+	 */
+	protected $uni;
 	
 	
 	/* ***************************************************** */
@@ -36,6 +51,24 @@ class ArtistVita extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
 	/* ***************************************************** */
 
+	
+	/**
+	 * @param string $content
+	 * @return void
+	 */
+	public function setContent($content)
+	{
+		$this->content = $content;
+	}
+	
+	/**
+	 * @return string
+	 */
+	public function getContent()
+	{
+		return $this->content;
+	}
+	
 	
 	/**
 	 * @param string $dateFrom
@@ -74,20 +107,57 @@ class ArtistVita extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	
 	
 	/**
-	 * @param string $content
+	 * @param string $degree
 	 * @return void
 	 */
-	public function setContent($content)
+	public function setDegree($degree)
 	{
-		$this->content = $content;
+		$this->degree = $degree;
 	}
 	
 	/**
 	 * @return string
 	 */
-	public function getContent()
+	public function getDegree()
 	{
-		return $this->content;
+		return $this->degree;
 	}
+	
+	
+	/**
+	 * @return string
+	 */
+	public function getVtype()
+	{
+		return $this->vtype;
+	}
+	
+	/**
+	 * @param string $vtype
+	 * @return void
+	 */
+	public function setVtype($vtype)
+	{
+		$this->vtype = $vtype;
+	}
+	
+	
+	/**
+	 * @return \N1coode\NjArtgallery\Domain\Model\Uni
+	 */
+	public function getUni()
+	{
+		return $this->uni;
+	}
+	
+	/**
+	 * @param \N1coode\NjArtgallery\Domain\Model\Uni $uni
+	 * @return void
+	 */
+	public function setUni($uni)
+	{
+		$this->uni = $uni;
+	}
+	
 	
 } //end of class

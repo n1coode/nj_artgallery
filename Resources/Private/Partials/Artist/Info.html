@@ -1,0 +1,9 @@
+<div class="info">
+	<f:if condition="{artist.city} || {artist.country}">
+		<p><f:render partial="Artist/Info/Location" arguments="{artist:artist}" /></p>
+	</f:if>
+	<p><f:render partial="Artist/Info/Categories" arguments="{artist:artist}" /></p>
+	<f:if condition="{artist.universities}">
+		<f:render partial="Artist/Info/Universities" arguments="{artist:artist}" />
+	</f:if>
+</div>

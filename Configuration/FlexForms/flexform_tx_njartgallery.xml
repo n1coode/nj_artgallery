@@ -348,6 +348,49 @@
 				</el>
 			</ROOT>
 		</sCONTROLLER_ARTIST_ACTION_LIST>
+		<sCONTROLLER_ARTIST_ACTION_FOCUS>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:flexform.controller.artist.focus</sheetTitle>
+					<displayCond><![CDATA[FIELD:sDEF.switchableControllerActions:=:Artist->focus;Ajax->image]]></displayCond>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.flexform.settings.model.artist.focus.version>
+						<TCEforms>
+							<label>LLL:EXT:nj_artgallery/Resources/Private/Language/locallang_db.xlf:label.general.version</label>
+							<config>
+  								<type>radio</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">Complete</numIndex>
+										<numIndex index="1">complete</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">Summary</numIndex>
+										<numIndex index="1">summary</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">Artworks</numIndex>
+										<numIndex index="1">artworks</numIndex>
+									</numIndex>
+									<numIndex index="3" type="array">
+										<numIndex index="0">Exhibitions</numIndex>
+										<numIndex index="1">exhibitions</numIndex>
+									</numIndex>
+									<numIndex index="4" type="array">
+										<numIndex index="0">Vita</numIndex>
+										<numIndex index="1">vita</numIndex>
+									</numIndex>
+								</items>
+								<default>vertical</default>
+								<maxitems>1</maxitems>
+							</config>
+						</TCEforms>	
+					</settings.flexform.settings.model.artist.focus.version>
+				</el>
+			</ROOT>
+		</sCONTROLLER_ARTIST_ACTION_FOCUS>
 		<sCONTROLLER_HEADER_ACTION_STARTPAGE>
 			<ROOT>
 				<TCEforms>

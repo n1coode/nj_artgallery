@@ -9,15 +9,13 @@ namespace N1coode\NjArtgallery\Domain\Model;
 class ArtworkTech extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 	/**
-	 * @var \string
+	 * @var string
 	 * @validate StringLength(minimum = 3, maximum = 255)
 	 */
-	protected $name;
+	protected $title;
 	
 	/**
-	 * The description of the category.
-	 *
-	 * @var \string
+	 * @var string
 	 */
 	protected $description = '';
 	
@@ -36,31 +34,25 @@ class ArtworkTech extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
 	
 	/**
-	 * Sets the name
-	 *
-	 * @param \string $name
+	 * @param string $title
 	 * @return void
 	 */
-	public function setName($name)
+	public function setTitle($title)
 	{
-		$this->name = $name;
+		$this->title = $title;
 	}
 	
 	/**
-	 * Getter for the name
-	 *
-	 * @return \string
+	 * @return string
 	 */
-	public function getName()
+	public function getTitle()
 	{
-		return $this->name;
+		return $this->title;
 	}
 	
 	
 	/**
-	 * Sets the description
-	 *
-	 * @param \string $description
+	 * @param string $description
 	 * @return void
 	 */
 	public function setDescription($description)
@@ -69,14 +61,11 @@ class ArtworkTech extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	}
 	
 	/**
-	 * Getter for the description
-	 *
-	 * @return \string
+	 * @return string
 	 */
 	public function getDescription()
 	{
 		return $this->description;
 	}
 	
-} //end of class Tx_NjArtgallery_Domain_Model_ArtworkCat
-?>
+} //end of class

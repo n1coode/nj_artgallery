@@ -1,0 +1,5 @@
+<f:if condition="{artwork.onSale">
+	<f:if condition="{artwork.showPrice}">
+		<f:format.number decimals="0" decimalSeparator="," thousandsSeparator=".">{artwork.price}</f:format.number> Euro
+	</f:if>
+</f:if>

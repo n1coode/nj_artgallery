@@ -25,11 +25,30 @@ class Artwork extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $category;
 
+	
+	
     /**
-     * @var int
+     * @var string
      */
-    protected $cryear;
+    protected $creation;
 
+	/**
+	 * @var string 
+	 */
+	protected $creationLocation;
+	
+	/**
+	 * @var int 
+	 */
+	protected $creationFinished;
+	
+	/**
+	 * @var int 
+	 */
+	protected $creationStart;
+	
+	
+	
     /**
      * @var int
      */
@@ -45,7 +64,7 @@ class Artwork extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @lazy
      * @cascade remove
      */
-    protected $medium;
+    protected $media;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\N1coode\NjArtgallery\Domain\Model\ArtworkMotive>
@@ -59,11 +78,21 @@ class Artwork extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $onSale;
 
+	/**
+	 * @var double2
+	 */
+	protected $price;
+	
     /**
      * @var int
      */
     protected $showcase;
 
+	/**
+	 * @var int 
+	 */
+	protected $showPrice;
+	
     /**
      * @var int
      */
@@ -147,31 +176,89 @@ class Artwork extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 	
 	
     /**
-     * Getter for the year of creation
-     *
-     * @return int
+     * @return string
      */
-    public function getCryear()
+    public function getCreation()
     {
-        return $this->cryear;
+		$this->creation = '';
+		if($this->creationStart > 0) {
+			$this->creation .= $this->creationStart;
+			
+			if($this->creationFinished > 0)
+			{
+				$this->creation .= ' - ';
+			}
+		}
+		if($this->creationFinished > 0) {
+			$this->creation .= $this->creationFinished;
+			
+			if($this->creationLocation !== NULL)
+			{
+				$this->creation .= ', ';
+			}
+		}
+		if($this->creationLocation !== NULL) {
+			$this->creation .= $this->creationLocation;
+		}
+        return $this->creation;
+    }
+
+	
+	/**
+     * @return string
+     */
+    public function getCreationLocation()
+    {
+        return $this->creationLocation;
     }
 
     /**
-     * Setter for the year of creation
-     *
-     * @param int $type
+     * @param string
      * @return void
-     * @api
      */
-    public function setCryear($cryear)
+    public function setCreationLocation($creationLocation)
     {
-        $this->cryear = $cryear;
+        $this->creationLocation = $creationLocation;
+    }
+	
+	
+	/**
+     * @return int
+     */
+    public function getCreationFinished()
+    {
+        return $this->creationFinished;
+    }
+
+    /**
+     * @param int
+     * @return void
+     */
+    public function setCreationFinished($creationFinished)
+    {
+        $this->creationfinished = $creationFinished;
+    }
+	
+ 
+	/**
+     * @return int
+     */
+    public function getCreationStart()
+    {
+        return $this->creationStart;
+    }
+
+    /**
+     * @param int
+     * @return void
+     */
+    public function setCreationStart($creationStart)
+    {
+        $this->creationStart = $creationStart;
     }
 	
 	
     /**
-     * Getter for the description
-     *
      * @return string
      */
     public function getDescription()
@@ -180,8 +267,6 @@ class Artwork extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Setter for the description
-     *
      * @param string $description
      * @return void
      */
@@ -237,25 +322,20 @@ class Artwork extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
 	
     /**
-     * Getter for the medium the artwork is created on
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\N1coode\NjArtgallery\Domain\Model\ArtworkMedium> $medium
-     *
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\N1coode\NjArtgallery\Domain\Model\ArtworkMedium>
      */
-    public function getMedium()
+    public function getMedia()
     {
-        return $this->medium;
+        return $this->media;
     }
 
     /**
-     * Setter for the medium the artwork is created on
-     *
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\N1coode\NjArtgallery\Domain\Model\ArtworkMedium> $medium
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\N1coode\NjArtgallery\Domain\Model\ArtworkMedium> $media
      * @return void
      */
-    public function setMedium($medium)
+    public function setMedia($media)
     {
-        $this->medium = $medium;
+        $this->media = $media;
     }
 	
 	
@@ -282,7 +362,22 @@ class Artwork extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 	
     
-    
+	/**
+     * @return double2
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param double2 $price
+     * @return void
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
     
         
     /**
@@ -307,6 +402,24 @@ class Artwork extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->showcase = $showcase;
     }
     
+	
+	/**
+     * @return int
+     */
+    public function getShowPrice()
+    {
+        return $this->showPrice;
+    }
+
+    /**
+     * @param int $showPrice
+     * @return void
+     */
+    public function setShowPrice($showPrice)
+    {
+        $this->showPrice = $showPrice;
+    }
+	
     
     /**
      * Getter for sold status
@@ -373,6 +486,24 @@ class Artwork extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setTtitle($title)
     {
         $this->title = $title;
+    }
+	
+	
+	/**
+     * @return string
+     */
+    public function getOnSale()
+    {
+        return $this->onSale;
+    }
+
+    /**
+     * @param string $onSale
+     * @return void
+     */
+    public function setOnSale($onSale)
+    {
+        $this->onSale = $onSale;
     }
 	
 	

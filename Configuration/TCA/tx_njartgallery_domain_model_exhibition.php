@@ -179,7 +179,7 @@ return array(
 		),
 		'teaser_image' => array(
 			'exclude' => 1,
-			'label' => $nj_ext_lang_file.'label.model.'.$nj_domain.'.teaserImage',
+			'label' => $nj_collection_lang_file.'label.general.teaserImage',
 			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
 					'teaserImage',
 					array('minitems'=>0,'maxitems'=>1),
@@ -204,8 +204,8 @@ return array(
 				'type' => 'select',
 				'renderType' => 'selectSingle',
 				'items' => array(
-						array($nj_ext_lang_file.'select.model.'.$nj_domain.'.type.jointExhibition', 0),
-						array($nj_ext_lang_file.'select.model.'.$nj_domain.'.type.soloExhibition', 1)
+						array($nj_ext_lang_file.'select.general.type.jointExhibition', 0),
+						array($nj_ext_lang_file.'select.general.type.soloExhibition', 1)
 				)
 			)
 		),

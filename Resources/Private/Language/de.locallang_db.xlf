@@ -81,6 +81,9 @@
 			<trans-unit id="label.general.version" xml:space="preserve">
 				<target>Version</target>
 			</trans-unit>
+			<trans-unit id="label.general.jointExhibition" xml:space="preserve">
+				<target>Version</target>
+			</trans-unit>
 			<trans-unit id="label.model.artist.advertise" xml:space="preserve">
 				<target>Bewerben / hervorheben</target>
 			</trans-unit>
@@ -96,11 +99,23 @@
 			<trans-unit id="label.model.artist.summary" xml:space="preserve">
 				<target>Kurze Zusammenfassung</target>
 			</trans-unit>
-			<trans-unit id="label.model.artist.uni" xml:space="preserve">
+			<trans-unit id="label.model.artistvita.degree" xml:space="preserve">
+				<target>Abschluss</target>
+			</trans-unit>
+			<trans-unit id="label.model.artistvita.uni" xml:space="preserve">
 				<target>Universität</target>
 			</trans-unit>
-			<trans-unit id="label.model.artwork.creationYear" xml:space="preserve">
-				<target>Erstellungsjahr</target>
+			<trans-unit id="label.model.artwork.creation" xml:space="preserve">
+				<target>Erstellung</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.creationFinished" xml:space="preserve">
+				<target>Fertiggestellt</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.creationLocation" xml:space="preserve">
+				<target>Ort</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.creationStart" xml:space="preserve">
+				<target>Angefangen</target>
 			</trans-unit>
 			<trans-unit id="label.model.artwork.dimensions" xml:space="preserve">
 				<target>Maße (Angabe in cm)</target>
@@ -119,6 +134,9 @@
 			</trans-unit>
 			<trans-unit id="label.model.artwork.showcase" xml:space="preserve">
 				<target>Im "Schaufenster" ausstellen</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.showPrice" xml:space="preserve">
+				<target>Preis anzeigen</target>
 			</trans-unit>
 			<trans-unit id="label.model.artwork.sold" xml:space="preserve">
 				<target>Verkauft</target>
@@ -141,9 +159,6 @@
 			<trans-unit id="label.model.exhibition.installation" xml:space="preserve">
 				<target>Installation</target>
 			</trans-unit>
-			<trans-unit id="label.model.exhibition.teaserImage" xml:space="preserve">
-				<target>Teaser-Bild</target>
-			</trans-unit>
 			<trans-unit id="label.model.exhibition.type" xml:space="preserve">
 				<target>Art der Ausstellung</target>
 			</trans-unit>
@@ -156,6 +171,9 @@
 			<trans-unit id="model.artistcat" xml:space="preserve">
 				<target>Künstlerkategorie</target>
 			</trans-unit>
+			<trans-unit id="label.model.artistvita" xml:space="preserve">
+				<target>Lebenslauf-Eintrag</target>
+			</trans-unit>
 			<trans-unit id="model.artwork" xml:space="preserve">
 				<target>Kunstwerk</target>
 			</trans-unit>
@@ -165,11 +183,17 @@
 			<trans-unit id="plugin.title" xml:space="preserve">
 				<target>njs Kunstgalerie</target>
 			</trans-unit>
-			<trans-unit id="select.model.exhibition.type.jointExhibition" xml:space="preserve">
+			<trans-unit id="select.general.type.artFair" xml:space="preserve">
+				<target>Messe</target>
+			</trans-unit>
+			<trans-unit id="select.general.type.jointExhibition" xml:space="preserve">
 				<target>Gruppenausstellung</target>
 			</trans-unit>
-			<trans-unit id="select.model.exhibition.type.soloExhibition" xml:space="preserve">
+			<trans-unit id="select.general.type.soloExhibition" xml:space="preserve">
 				<target>Einzelausstellung</target>
+			</trans-unit>
+			<trans-unit id="select.general.type.study" xml:space="preserve">
+				<target>Studium</target>
 			</trans-unit>
 			<trans-unit id="tab.additionalInformation" xml:space="preserve">
 				<target>Zusätzliche Angaben</target>
@@ -182,6 +206,9 @@
 			</trans-unit>
 			<trans-unit id="tab.generalInformation" xml:space="preserve">
 				<target>Allgemeine Informationen</target>
+			</trans-unit>
+			<trans-unit id="tab.sale" xml:space="preserve">
+				<target>Verkauf</target>
 			</trans-unit>
 			<trans-unit id="tab.vita" xml:space="preserve">
 				<target>Vita</target>

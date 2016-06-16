@@ -75,5 +75,20 @@ AJAX_njartgallery {
 	}
 }
 
-
-
+lib.tx_njartgallery = USER
+lib.tx_njartgallery {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = NjArtgallery
+    pluginName = Pi1
+    vendorName = N1coode
+    controller = Artist
+    action = menu
+	settings =< plugin.tx_njartgallery.settings
+	persistence =< plugin.tx_njartgallery.persistence
+	view =< plugin.tx_njartgallery.view
+    switchableControllerActions {
+		Artist {
+			1 = focus
+		}
+	}
+}

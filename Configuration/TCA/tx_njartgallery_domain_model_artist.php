@@ -107,13 +107,13 @@ return array(
 				'default'   => 0
 			)
 		),
-		'category' => array(
+		'categories' => array(
 			'exclude'	=> 0,
 			'label'		=> $nj_collection_lang_file.'label.general.category',
 			'config'	=> array(
 				'type' 					=> 'select',
 				'foreign_table' 		=> $nj_ext_key.'_domain_model_artistcat',
-				'foreign_table_where' 	=> 'ORDER BY '.$nj_ext_key.'_domain_model_artistcat.name',
+				'foreign_table_where' 	=> 'ORDER BY '.$nj_ext_key.'_domain_model_artistcat.title',
 				'size'					=> 5,
 				'maxitems' 				=> 10,
 				'minitems'				=> 0
@@ -168,6 +168,18 @@ return array(
 				'max'  => 256
 			)
 		),
+		'gender' => [
+			'exclude' => 0,
+			'label' => $nj_collection_lang_file.'label.general.gender',
+			'config' => [
+				'type' => 'radio',
+				'items' => [
+					[$nj_collection_lang_file.'select.general.gender.female',0],
+					[$nj_collection_lang_file.'select.general.gender.male',1],
+				],
+				'default'   => 0
+			]
+		],
 		'last_name' => array(
 			'exclude' => 0,
 			'label'   => $nj_collection_lang_file.'label.general.lastName',
@@ -214,6 +226,15 @@ return array(
 				'rows' => 6,
 			),
 			'defaultExtras' => 'richtext[]',
+		),
+		'teaser_image' => array(
+			'exclude' => 1,
+			'label' => $nj_collection_lang_file.'label.general.teaserImage',
+			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+					'teaserImage',
+					array('minitems'=>0,'maxitems'=>1),
+					$GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+			),
 		),
 		'universities' => array(
 			'displayCond' => 'FIELD:finished_training:>:0',
@@ -269,7 +290,7 @@ return array(
     ),
 	'types' => array(
         '0' => array('showitem' => 
-			  '--div--;'.$nj_ext_lang_file.'tab.generalInformation,hidden,sys_language_uid;;1,--palette--;'.$nj_collection_lang_file.'label.general.name;name,category,permanent,advertise,summary,'
+			  '--div--;'.$nj_ext_lang_file.'tab.generalInformation,hidden,sys_language_uid;;1,--palette--;'.$nj_collection_lang_file.'label.general.name;name,gender,categories,permanent,advertise,summary,teaser_image,'
 			. '--div--;'.$nj_ext_lang_file.'tab.vita,finished_training,universities,vita,'
 			. '--div--;'.$nj_ext_lang_file.'tab.additionalInformation,email,website,street,city,zip_code,country' )
     ),

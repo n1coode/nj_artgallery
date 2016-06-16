@@ -1,0 +1,3 @@
+<f:if condition="{artwork.techniques}">
+	<f:for each="{artwork.techniques}" as="technique" iteration="i">{technique.title}<f:if condition="!{i.isLast}">, </f:if></f:for>
+</f:if>

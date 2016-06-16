@@ -7,6 +7,19 @@ namespace N1coode\NjArtgallery\Controller;
  */
 class ArtistController extends \N1coode\NjArtgallery\Controller\AbstractController
 {
+	const _vtype_study = 'study';
+	
+	const _version_focus_complete = 'complete';
+	const _version_focus_summary = 'summary';
+	const _version_focus_artworks = 'artworks';
+	const _version_focus_exhibitions = 'exhibitions';
+	const _version_focus_vita = 'vita';
+	
+	/**
+	 * @var \N1coode\NjArtgallery\Domain\Model\Artist 
+	 */
+	private $artist = NULL;
+	
     /**
      * Initializes the controller before invoking an action method.
      *
@@ -84,6 +97,7 @@ class ArtistController extends \N1coode\NjArtgallery\Controller\AbstractControll
 		$this->view->assignMultiple($assignValues);
     }
     
+	
     /**
      * Displays a single artist, depending to a given uid.
      *
@@ -93,31 +107,56 @@ class ArtistController extends \N1coode\NjArtgallery\Controller\AbstractControll
     protected function focusAction(\N1coode\NjArtgallery\Domain\Model\Artist $artist = NULL)
     {
 		$assignValues = [];
+		$assignValues['ext'] = parent::getExtSettings();
+		$assignValues['js'] = $this->getJsSettings();
 		
-        $selectedArtist = new \N1coode\NjArtgallery\Domain\Model\Artist();
-        if($artist !== NULL)
-        {
-            if(is_object($artist))
-            {
-                $selectedArtist = $artist;
-            }
+		$action = explode("Action", __FUNCTION__)[0];
+		$version = self::_version_focus_complete;
+		if(array_key_exists('version', $this->settings['model'][$this->nj_domain][$action]))
+		{
+			$version = $this->settings['model'][$this->nj_domain][$action]['version'];
+		}
+
+		$assignValues['version'] = $version;
+		
+        $this->artist = new \N1coode\NjArtgallery\Domain\Model\Artist();
+        if($artist !== NULL && is_object($artist)) {
+			$this->artist = $artist;
             
-			$assignValues['artist'] = $selectedArtist;
-            $assignValues['ext'] = parent::getExtSettings();
-			$assignValues['js'] = $this->jsSettings();
-            
-            $artworks = $this->artworkRepository->findByArtist($selectedArtist);
-            if(is_object($artworks))
-            {
-                if($artworks !== NULL)
-                {
-                    $assignValues['artworks'] = $artworks;
-                }
-            }
+			switch($version) {
+				case self::_version_focus_summary:
+					
+					break;
+				case self::_version_focus_artworks:
+					$assignValues['artworks'] = $this->getArtworks();
+					break;
+				case self::_version_focus_vita:
+					$this->addStudiesToArtist();
+					break;
+				default:
+					//version:complete
+					$this->addStudiesToArtist();
+					$assignValues['artworks'] = $this->getArtworks();
+			} //end of switch($version)
+			$assignValues['artist'] = $this->artist;
         }
+		else {
+			$assignValues['errors']['noArtistFound'] = 1;
+		}
+		
 		$this->view->assignMultiple($assignValues);
     }
 	
+	/**
+	 * @param \N1coode\NjArtgallery\Domain\Model\Artist $artist The artist to be displayed
+	 * @return void
+	 */
+	protected function menuAction(\N1coode\NjArtgallery\Domain\Model\Artist $artist = NULL)
+	{
+		
+	}
+
+
 	/**
 	 * Sets the settings especially needed for the ajax controller
 	 */
@@ -138,5 +177,46 @@ class ArtistController extends \N1coode\NjArtgallery\Controller\AbstractControll
 		
 		return $settings;
 	}
+	
+	/**
+	 * @return array
+	 */
+	private function getArtworks()
+	{
+		$artworks = $this->artworkRepository->findByArtist($this->artist);
+		
+		if(is_object($artworks))
+		{
+			$assignArtworks = [];
+
+			foreach($artworks as $artwork)
+			{
+				if($artwork->getImage() !== NULL)
+				{
+					$assignArtworks[] = $artwork;
+				}
+			}
+
+			if(!empty($assignArtworks))
+			{
+				shuffle($assignArtworks);
+				return $assignArtworks;
+			}
+		}
+		return NULL;
+	}
+	
+	private function addStudiesToArtist() {
+		$vita = $this->artist->getVita();
+		if(!empty($vita))
+		{
+			foreach($vita as $entry)
+			{
+				if($entry->getVtype() === self::_vtype_study)
+				{
+					$this->artist->pushStudies($entry);
+				}
+			}
+		}
+	}
 }
-?>

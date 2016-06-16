@@ -1,4 +1,3 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 {namespace njvh=N1coode\NjArtgallery\ViewHelpers}
 {namespace njcvh=N1coode\NjCollection\ViewHelpers}
 <div class="grid masonry">
@@ -16,52 +15,7 @@
 	</f:if>	
 </div>
 
-<script type="text/javascript">
-	$(document).ready(function() 
-	{
-		//TODO init in addition to screen width
-		var itemSelector = '.{ext.key}.{ext.domain}.{ext.action} .grid-item';
-		var columnWidth = '.{ext.key}.{ext.domain}.{ext.action} .grid-sizer';
-		var gutter = '.{ext.key}.{ext.domain}.{ext.action} .gutter-sizer';
-		$('.{ext.key}.{ext.domain}.{ext.action} .grid.masonry').masonry({
-			itemSelector: itemSelector,
-			columnWidth: columnWidth,
-			percentPosition: true,
-			gutter: gutter
-		});
-		
-		
-		var tx_njartgallery_grid_container = '.{ext.key}.{ext.domain}.{ext.action} .grid-item a .container';
-			
-		//$(tx_njartgallery_teaser + " .readmore").hide(0);
 
-		$(document).on("mouseenter",tx_njartgallery_grid_container,function()
-		{
-			$height = $(this).find('IMG').outerHeight();
-			
-			$(this).find("IMG").animateCss('flipInX');
-			$(this).find("IMG").animate(
-			{
-				width: '110%',
-				height: $height,
-				marginLeft: '-5%',
-				opacity: 0.75
-			},125,function(){$(this).addClass("blur");});
-			
-		});
-		$(document).on("mouseleave",tx_njartgallery_grid_container,function()
-		{
-			$(this).find("IMG").animateCss('bounceIn');
-			$(this).find("IMG").removeClass("blur").animate(
-			{
-				width: '100%',
-				marginLeft: '0',
-				opacity: 1
-			},62.5);
-		});
-		
-	});
-</script>
 				
 
 <f:section name="grid-item">
@@ -151,5 +105,3 @@
 		</div>
 	</div>
 </f:section>
-
-</html>

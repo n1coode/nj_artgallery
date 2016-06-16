@@ -15,7 +15,7 @@ class ExhibitionRepository extends \N1coode\NjArtgallery\Domain\Repository\Abstr
 	/**
 	 * @return \TYPO3\CMS\Extbase\Persistence\QueryResultInterface The vernissage
 	 */
-	public function findNextVernissage($storagePid = 38)
+	public function findNextVernissage($storagePid = 15)
 	{
             $query = $this->createQuery();
             $query->statement(
@@ -90,7 +90,7 @@ class ExhibitionRepository extends \N1coode\NjArtgallery\Domain\Repository\Abstr
 	 * @param int $storagePid
 	 * @return \N1coode\NjArtgallery\Domain\Model\Exhibition The exhibition
 	 */
-	public function findActualExhibition($storagePid = 38)
+	public function findActualExhibition($storagePid = 15)
 	{
 		$query = $this->createQuery();
 		$query->statement(

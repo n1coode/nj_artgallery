@@ -20,17 +20,19 @@ CREATE TABLE tx_njartgallery_domain_model_artist (
     l18n_diffsource mediumblob NOT NULL,
 
     advertise tinyint(3) NOT NULL default '0',
-    category varchar(255) DEFAULT '' NOT NULL,
+    categories varchar(255) DEFAULT '' NOT NULL,
     city varchar(255) DEFAULT '' NOT NULL,
     country varchar(255) DEFAULT '' NOT NULL,
     email varchar(255) DEFAULT '' NOT NULL,
 	enable_entire_name tinyint(3) NOT NULL default '0',
     finished_training tinyint(3) NOT NULL default '0',
 	first_name varchar(255) DEFAULT '' NOT NULL,
+	gender tinyint(3) NOT NULL default '0',
 	last_name varchar(255) DEFAULT '' NOT NULL,
     permanent tinyint(3) NOT NULL default '0',
     street varchar(255) DEFAULT '' NOT NULL,
     summary text NOT NULL,
+	teaser_image int(11) unsigned DEFAULT '0' NOT NULL,
 	vita varchar(255) DEFAULT '' NOT NULL,
     website varchar(255) DEFAULT '' NOT NULL,
     universities varchar(255) DEFAULT '' NOT NULL,
@@ -51,9 +53,8 @@ CREATE TABLE tx_njartgallery_domain_model_artist (
 );
 
 
-#
 # Table structure for table 'tx_njartgallery_domain_model_artistbio'
-# 
+
 CREATE TABLE tx_njartgallery_domain_model_artistvita (
     uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,
@@ -77,7 +78,9 @@ CREATE TABLE tx_njartgallery_domain_model_artistvita (
 
     date_from varchar(25) DEFAULT '' NOT NULL,
     date_to varchar(25) DEFAULT '' NOT NULL,
+	degree varchar(255) DEFAULT '' NOT NULL,
     content text NOT NULL,
+	uni tinyint(3) NOT NULL default '0',
 	vtype varchar(50) DEFAULT '' NOT NULL,
 
     t3ver_oid int(11) DEFAULT '0' NOT NULL,
@@ -95,9 +98,8 @@ CREATE TABLE tx_njartgallery_domain_model_artistvita (
 );
 
 
-#  
 # Table structure for table 'tx_njartgallery_domain_model_artistcat'
-#
+
 CREATE TABLE tx_njartgallery_domain_model_artistcat (
     uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,
@@ -116,7 +118,7 @@ CREATE TABLE tx_njartgallery_domain_model_artistcat (
     l18n_parent int(11) DEFAULT '0' NOT NULL,
     l18n_diffsource mediumblob NOT NULL,
 
-    name varchar(255) DEFAULT '' NOT NULL,
+    title varchar(255) DEFAULT '' NOT NULL,
     description text NOT NULL,
 
     t3ver_oid int(11) DEFAULT '0' NOT NULL,
@@ -130,14 +132,13 @@ CREATE TABLE tx_njartgallery_domain_model_artistcat (
     t3_origuid int(11) DEFAULT '0' NOT NULL,
 
     PRIMARY KEY (uid),
-    UNIQUE title (name),
+    UNIQUE title (title),
     KEY parent (pid)
 );
 
 
-#
 # Table structure for table 'tx_njartgallery_domain_model_artwork'
-#
+
 CREATE TABLE tx_njartgallery_domain_model_artwork (
     uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,
@@ -158,14 +159,19 @@ CREATE TABLE tx_njartgallery_domain_model_artwork (
 
     artist int(11) DEFAULT '0' NOT NULL,
     category tinyint(3) NOT NULL default '0',
-    cryear int(11) unsigned DEFAULT '0' NOT NULL,
+	creation_location varchar(255) DEFAULT '' NOT NULL,
+	creation_finished int(11) unsigned DEFAULT '0' NOT NULL,
+    creation_start int(11) unsigned DEFAULT '0' NOT NULL,
+	cryear int(11) unsigned DEFAULT '0' NOT NULL,
     description text NOT NULL,
     height int(11) unsigned DEFAULT '0' NOT NULL,
     image int(11) unsigned DEFAULT '0' NOT NULL,
     media varchar(255) DEFAULT '' NOT NULL,
     motives varchar(255) DEFAULT '' NOT NULL,
     on_sale tinyint(3) NOT NULL default '0',
+	price float(25,2) NOT NULL default '0.00',
     showcase tinyint(3) NOT NULL default '0',
+	show_price tinyint(3) NOT NULL default '0',
     sold tinyint(3) NOT NULL default '0',
     techniques varchar(255) DEFAULT '' NOT NULL,
     title varchar(255) DEFAULT '' NOT NULL,
@@ -186,9 +192,9 @@ CREATE TABLE tx_njartgallery_domain_model_artwork (
 );
 
 
-#  
+
 # Table structure for table 'tx_njartgallery_domain_model_artworkcat'
-#
+
 CREATE TABLE tx_njartgallery_domain_model_artworkcat (
     uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,
@@ -225,9 +231,9 @@ CREATE TABLE tx_njartgallery_domain_model_artworkcat (
     KEY parent (pid)
 );
 
-#  
+ 
 # Table structure for table 'tx_njartgallery_domain_model_artworkmedium'
-#
+
 CREATE TABLE tx_njartgallery_domain_model_artworkmedium (
     uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,
@@ -264,9 +270,9 @@ CREATE TABLE tx_njartgallery_domain_model_artworkmedium (
     KEY parent (pid)
 );
 
-#  
+
 # Table structure for table 'tx_njartgallery_domain_model_artworkmotive'
-#
+
 CREATE TABLE tx_njartgallery_domain_model_artworkmotive (
     uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,
@@ -303,9 +309,9 @@ CREATE TABLE tx_njartgallery_domain_model_artworkmotive (
     KEY parent (pid)
 );
 
-#  
+  
 # Table structure for table 'tx_njartgallery_domain_model_artworktech'
-#
+
 CREATE TABLE tx_njartgallery_domain_model_artworktech (
     uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,
@@ -324,7 +330,7 @@ CREATE TABLE tx_njartgallery_domain_model_artworktech (
     l18n_parent int(11) DEFAULT '0' NOT NULL,
     l18n_diffsource mediumblob NOT NULL,
 
-    name varchar(255) DEFAULT '' NOT NULL,
+    title varchar(255) DEFAULT '' NOT NULL,
     description text NOT NULL,
 
     t3ver_oid int(11) DEFAULT '0' NOT NULL,
@@ -338,14 +344,13 @@ CREATE TABLE tx_njartgallery_domain_model_artworktech (
     t3_origuid int(11) DEFAULT '0' NOT NULL,
 
     PRIMARY KEY (uid),
-    UNIQUE title (name),
+    UNIQUE title (title),
     KEY parent (pid)
 );
 
-
-#  
+  
 # Table structure for table 'tx_njartgallery_domain_model_artworktype
-#
+
 CREATE TABLE tx_njartgallery_domain_model_artworkmedium (
     uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,
@@ -383,9 +388,8 @@ CREATE TABLE tx_njartgallery_domain_model_artworkmedium (
 );
 
 
-#
 # Table structure for table 'tx_njartgallery_domain_model_exhibition'
-#
+
 CREATE TABLE tx_njartgallery_domain_model_exhibition (
     uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,
@@ -431,9 +435,8 @@ CREATE TABLE tx_njartgallery_domain_model_exhibition (
 );
 
 
-#
 # Table structure for table 'tx_njartgallery_domain_model_slider'
-#
+
 CREATE TABLE tx_njartgallery_domain_model_slider (
     uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,
@@ -469,9 +472,8 @@ CREATE TABLE tx_njartgallery_domain_model_slider (
 );
 
 
-#
 # Table structure for table 'tx_njartgallery_domain_model_slidersheet'
-#
+
 CREATE TABLE tx_njartgallery_domain_model_slidersheet (
     uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,
@@ -509,9 +511,9 @@ CREATE TABLE tx_njartgallery_domain_model_slidersheet (
     KEY parent (pid)
 );
 
-#
+
 # Table structure for table 'tx_njartgallery_domain_model_uni'
-# 
+
 CREATE TABLE tx_njartgallery_domain_model_uni (
     uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
     pid int(11) DEFAULT '0' NOT NULL,

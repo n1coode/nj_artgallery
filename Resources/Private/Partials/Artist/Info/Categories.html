@@ -1,0 +1,5 @@
+<f:if condition="{artist.categories}">
+	<ul class="categories horizontal">
+		<f:for each="{artist.categories}" as="category" iteration="i"><li>{category.title}</li></f:for>
+	</ul>
+</f:if>

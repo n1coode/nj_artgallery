@@ -1,6 +1,10 @@
 {namespace f=N1coode\NjArtgallery\ViewHelpers}
 {namespace f=N1coode\NjCollection\ViewHelpers}
 {namespace f=N1coode\NjPage\ViewHelpers}
+
+<f:render section="impression" arguments="{_all}" />
+
+<f:comment>
 <f:if condition="{exhibition.artworks}">
 	<f:then>
 		<f:wrapAction class="wall" ext="{ext}">
@@ -8,10 +12,10 @@
 		</f:wrapAction>
 	</f:then>
 	<f:else>	
-		<f:render section="impression" arguments="{_all}" />	
+			
 	</f:else>
 </f:if>
-
+</f:comment>
 
 <f:section name="wall">
 	<div class="ribbon">
@@ -52,12 +56,12 @@
 			</div>
 			<f:if condition="{settings.model.exhibition.pid.focus}">
 				<div class="center">
-					<f:link.action class="readmore" pageUid="{settings.model.exhibition.pid.focus}" action="focus" arguments="{exhibition:exhibition}">weiterlesen</f:link.action>
+					<f:link.action class="readmore" pageUid="{settings.model.exhibition.pid.focus}" action="focus" arguments="{exhibition:exhibition}"><f:translate key="{ext.langFile}label.general.readmore" /></f:link.action>
 				</div>
 			</f:if>
 		</div>
 		
-		<f:for each="{njVH:RanGalArt(artworks:'{exhibition.artworks}')}" as="artwork" iteration="iterator">
+		<f:for each="{f:RanGalArt(artworks:'{exhibition.artworks}')}" as="artwork" iteration="iterator">
 			<f:if condition="{iterator.index}<=1">
 				<div class="flexitem col4of12" data-role="artwork-wall">
 					<div class="artwork {f:if(condition:'{iterator.index}==0',then:'left',else:'right')}" data-uid="{artwork.uid}">
@@ -86,7 +90,11 @@
 					<f:if condition="{exhibition.artists}"><f:render partial="Exhibition/Artists" arguments="{artists:exhibition.artists,ext:ext,showHeadline:TRUE}" /></f:if>
 				</div>
 			</div>
-			<f:render partial="Exhibition/Readmore" arguments="{ext:ext,settings:settings}" />
+			<div class="link n1base n1wrapper">
+				<div class="n1base n1container clearfix">
+					<f:render partial="Exhibition/Readmore" arguments="{ext:ext,settings:settings,exhibition:exhibition}" />
+				</div>
+			</div>
 			<div class="top">
 				<svg width="100%" height="100%" viewBox="0 0 750 25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="tiny">
 					<polygon points="0,0 750,0 0,25" fill="white" />

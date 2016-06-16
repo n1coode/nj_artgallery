@@ -1,45 +1,37 @@
-{namespace njVH=N1coode\NjArtgallery\ViewHelpers}
-{namespace njcVH=N1coode\NjCollection\ViewHelpers}
-<div class="{ext.key} {ext.domain} {ext.action} clearfix">
-	<div class="date">
-		<f:format.date format="d.m.Y">{exhibition.exhibitionStart}</f:format.date> &ndash; <f:format.date format="d.m.Y">{exhibition.exhibitionEnd}</f:format.date>
-	</div>
-	<h1>{exhibition.title}</h1>
-	<div class="type">
-		<f:if condition="{exhibition.type}==0">
-			<f:then>
-				<f:translate key="actualTeaser.type.0">Gruppenausstellung</f:translate>
-			</f:then>
-			<f:else>
-				<f:translate key="actualTeaser.type.1">Einzelausstellung</f:translate>
-			</f:else>
-		</f:if>
-	</div>
+{namespace f=N1coode\NjArtgallery\ViewHelpers}
+{namespace f=N1coode\NjCollection\ViewHelpers}
+{namespace f=N1coode\NjPage\ViewHelpers}
+<f:wrap.action ext="{ext}">
+	<header>
+		<date>
+			<f:format.date format="d.m.Y">{exhibition.exhibitionStart}</f:format.date> &ndash; <f:format.date format="d.m.Y">{exhibition.exhibitionEnd}</f:format.date>
+		</date>
+		<h1>{exhibition.title}</h1>
+		<f:render partial="Exhibition/Type" arguments="{exhibition:exhibition}" />
+	</header>
 	<f:if condition="{exhibition.artists}">
-		<njcVH:wrapper additionalClass="artists">
+		<section class="artists">
 			<f:for each="{exhibition.artists}" as="artist" iteration="artistIterator">
 				{artist.name}<f:if condition="{artistIterator.isLast}==0">, </f:if>
 			</f:for>
 			<f:if condition="{filteredArtists}"> u.a.</f:if>
-		</njcVH:wrapper>
+		</section>
 	</f:if>
 	<f:if condition="{exhibition.artworks}">
-		<njcVH:wrapper additionalClass="artworks">
+		<section class="artworks">
 			<f:for each="{exhibition.artworks}" as="artwork" iteration="artworkIterator">
 				<div class="thumbnail" data-artwork="{artwork.uid}">
-					<f:image src="{artwork.image.uid}" alt="{artwork.title}" height="150" treatIdAsReference="1" />
+					<f:image src="{artwork.image.uid}" alt="{artwork.title}" height="250" maxHeight="250" treatIdAsReference="1" />
 				</div>
 			</f:for>
-		</njcVH:wrapper>
+		</section>
 	</f:if>
 	<f:if condition="{exhibition.description}">
-		<njcVH:wrapper additionalClass="description">
+		<section class="description">
 			<f:format.raw>{exhibition.description}</f:format.raw>
-		</njcVH:wrapper>
+		</section>
 	</f:if>
 	<f:if condition="{exhibition.impressions}">
 		<f:render partial="Exhibition/Impressions" arguments="{exhibition:exhibition}" />
 	</f:if>
-	
-	<f:render partial="JavascriptArguments" arguments="{js:js}"></f:render>
-</div>
+</f:wrap.action>

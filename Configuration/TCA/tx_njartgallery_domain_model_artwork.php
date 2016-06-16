@@ -34,7 +34,7 @@ return array(
         'enablecolumns' => array(
             'disabled' => 'hidden'
         ),
-        'requestUpdate' => 'sys_language_uid,on_sale',
+        'requestUpdate' => 'on_sale,show_price,sys_language_uid',
         'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($nj_ext_path) . 'Resources/Public/Icons/' . $nj_ext_key . '_domain_model_' . $nj_domain . '.svg',
     ),
 	'interface' => array(
@@ -106,8 +106,8 @@ return array(
             'label'   => $nj_ext_lang_file.'label.general.artists',
             'config' => Array (
                 'type' => 'select',
-                'foreign_table' => $nj_extkey.'_domain_model_artist',
-				'foreign_table_where' => 'AND '.$nj_extkey.'_domain_model_artist.pid=###CURRENT_PID### ORDER BY '.$nj_extkey.'_domain_model_artist.last_name',
+                'foreign_table' => $nj_ext_key.'_domain_model_artist',
+				'foreign_table_where' => 'AND '.$nj_ext_key.'_domain_model_artist.pid=###CURRENT_PID### ORDER BY '.$nj_ext_key.'_domain_model_artist.last_name',
 				'renderType' => 'selectSingle',
 				'size' => 15,
 				'multiple' => 0,
@@ -120,22 +120,52 @@ return array(
             'label' => $nj_collection_lang_file.'label.general.category',
             'config' => array(
                 'type' 	=> 'select',
-                'foreign_table'         => $nj_extkey.'_domain_model_artworkcat',
-                'foreign_table_where' 	=> 'ORDER BY '.$nj_extkey.'_domain_model_artworkcat.name',
+                'foreign_table'         => $nj_ext_key.'_domain_model_artworkcat',
+                'foreign_table_where' 	=> 'ORDER BY '.$nj_ext_key.'_domain_model_artworkcat.name',
                 'size'                  => 5,
                 'maxitems'              => 10,
 				'minitems'				=> 0
             )
         ),
-		'cryear' => Array (
+		'creation_finished' => Array (
             'exclude' => 0,
-            'label' => $nj_ext_lang_file.'label.model.'.$nj_domain.'.creationYear',
+            'label' => $nj_ext_lang_file.'label.model.'.$nj_domain.'.creationFinished',
             'config' => Array (
                 'type' => 'input',
                 'size' => 10,
                 'eval' => 'int',
             )
         ),
+		'creation_location' => array(
+			'exclude' => 0,
+			'label' => $nj_ext_lang_file.'label.model.'.$nj_domain.'.creationLocation',
+			'config'  => array(
+				'type' => 'input',
+				'size' => 25,
+				'eval' => 'trim',
+				'max'  => 256
+			)
+		),
+		'creation_start' => Array (
+            'exclude' => 0,
+            'label' => $nj_ext_lang_file.'label.model.'.$nj_domain.'.creationStart',
+            'config' => Array (
+                'type' => 'input',
+                'size' => 10,
+                'eval' => 'int',
+            )
+        ),
+		
+		'cryear' => Array (
+            'exclude' => 0,
+            'label' => 'cryear',
+            'config' => Array (
+                'type' => 'input',
+                'size' => 10,
+                'eval' => 'int',
+            )
+        ),
+		
 		'description' => array(
 			'exclude' => 0,
 			'label'   => $nj_collection_lang_file.'label.general.description',
@@ -172,8 +202,8 @@ return array(
             'label' => $nj_ext_lang_file.'label.model.'.$nj_domain.'.media',
             'config' => array(
                 'type'                  => 'select',
-                'foreign_table'         => $nj_extkey.'_domain_model_artworkmedium',
-                'foreign_table_where' 	=> 'ORDER BY '.$nj_extkey.'_domain_model_artworkmedium.title',
+                'foreign_table'         => $nj_ext_key.'_domain_model_artworkmedium',
+                'foreign_table_where' 	=> 'ORDER BY '.$nj_ext_key.'_domain_model_artworkmedium.title',
                 'size'                  => 5,
                 'maxitems'              => 5,
 				'minitems'				=> 0
@@ -184,8 +214,8 @@ return array(
             'label' => $nj_ext_lang_file.'label.model.'.$nj_domain.'.motives',
             'config' => array(
                 'type'                  => 'select',
-                'foreign_table'         => $nj_extkey.'_domain_model_artworkmotive',
-                'foreign_table_where'   => 'ORDER BY '.$nj_extkey.'_domain_model_artworkmotive.title',
+                'foreign_table'         => $nj_ext_key.'_domain_model_artworkmotive',
+                'foreign_table_where'   => 'ORDER BY '.$nj_ext_key.'_domain_model_artworkmotive.title',
                 'size'                  => 5,
                 'maxitems'              => 5,
 				'minitems'				=> 0
@@ -200,9 +230,34 @@ return array(
                 'default'   => 0
             )
         ),
+		'price' => array(
+			'displayCond' => [
+				'AND' => ['FIELD:sys_language_uid:<=:0','FIELD:on_sale:=:1','FIELD:show_price:=:1']
+			],
+			'exclude' => 0,
+			'label'   => $nj_ext_lang_file.'label.model.'.$nj_domain.'.price',
+			'config'  => array(
+				'type' => 'input',
+				'size' => 40,
+				'eval' => 'double2',
+				'max'  => 15
+			)
+		),
 		'showcase' => array(
             'exclude' => 0,
             'label' => $nj_ext_lang_file.'label.model.'.$nj_domain.'.showcase',
+            'config' => array(
+                'type'      => 'check',
+                'default'   => 0
+            )
+        ),
+		'show_price' => array(
+			'displayCond' => [
+				'AND' => ['FIELD:on_sale:=:1']
+			],
+            'exclude' => 1,
+            'label' => $nj_ext_lang_file.'label.model.'.$nj_domain.'.showPrice',
+            'change' => 'reload',
             'config' => array(
                 'type'      => 'check',
                 'default'   => 0
@@ -221,8 +276,8 @@ return array(
             'label' => $nj_ext_lang_file.'label.model.'.$nj_domain.'.usedTechniques',
             'config' => array(
                 'type'                  => 'select',
-                'foreign_table'         => $nj_extkey.'_domain_model_artworktech',
-                'foreign_table_where' 	=> 'ORDER BY '.$nj_extkey.'_domain_model_artworktech.name',
+                'foreign_table'         => $nj_ext_key.'_domain_model_artworktech',
+                'foreign_table_where' 	=> 'ORDER BY '.$nj_ext_key.'_domain_model_artworktech.title',
                 'size'                  => 5,
                 'maxitems'              => 5,
 				'minitems'				=> 0
@@ -251,15 +306,24 @@ return array(
     ),
 	'types' => array(
         '0' => array('showitem' => 
-			  '--div--;'.$nj_ext_lang_file.'tab.generalInformation,hidden,sys_language_uid;;1,title,cryear,artist,description,showcase,on_sale,sold,'
-			. '--div--;'.$nj_ext_lang_file.'tab.categorization,category,motives,media,techniques,--palette--;'.$nj_ext_lang_file.'label.model.'.$nj_domain.'.dimensions;nj_artgallery_artist_dimensions,'
+			  '--div--;'.$nj_ext_lang_file.'tab.generalInformation,hidden,sys_language_uid;;1,title,cryear,--palette--;'.$nj_ext_lang_file.'label.model.'.$nj_domain.'.creation;creation,artist,description,showcase,'
+			. '--div--;'.$nj_ext_lang_file.'tab.categorization,category,motives,media,techniques,--palette--;'.$nj_ext_lang_file.'label.model.'.$nj_domain.'.dimensions;dimensions,'
+			. '--div--;'.$nj_ext_lang_file.'tab.sale,on_sale,--palette--;'.$nj_ext_lang_file.'label.model.'.$nj_domain.'.price;price,sold,'
 			. '--div--;'.$nj_collection_lang_file.'tab.general.images,image' )
     ),
     'palettes' => array(
         '1' => array('showitem' => 'l18n_parent'),
-		'nj_artgallery_artist_dimensions' => array(
+		'creation' => array(
+            'showitem'          => 'creation_location,creation_start, creation_finished,',
+            'canNotCollapse'    => '1',
+        ),
+		'dimensions' => array(
             'showitem'          => 'width, height,',
             'canNotCollapse'    => '1',
-        )
+        ),
+		'price' => array(
+            'showitem'          => 'show_price, price,',
+            'canNotCollapse'    => '1',
+        ),
     ),
 );
