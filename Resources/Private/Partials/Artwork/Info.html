@@ -2,5 +2,5 @@
 	<h3>{artwork.title}</h3>
 	<p>{artwork.creation}</p>
 	<p><f:render partial="Artwork/Techniques" arguments="{artwork:artwork}" /><f:if condition="{artwork.media}"> <f:translate key="{ext.langFile}label.general.on" /> <f:render partial="Artwork/Media" arguments="{artwork:artwork}" /></f:if><br/><f:render partial="Artwork/Dimension" arguments="{artwork:artwork}" /></p>
-	<f:render partial="Artwork/Sale" arguments="{artwork:artwork}" />
+	<f:render partial="Artwork/Sale" arguments="{artwork:artwork,ext:ext,settings:settings}" />
 </div>

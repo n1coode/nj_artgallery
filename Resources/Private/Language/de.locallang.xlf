@@ -6,6 +6,18 @@
 			<trans-unit id="headline.model.exhibition.actualExhibition" xml:space="preserve">
 				<target>Aktuelle Ausstellung</target>
 			</trans-unit>
+			<trans-unit id="label.form.email" xml:space="preserve">
+				<target>Email-Adresse</target>
+			</trans-unit>
+			<trans-unit id="label.form.message" xml:space="preserve">
+				<target>Nachricht</target>
+			</trans-unit>
+			<trans-unit id="label.form.name" xml:space="preserve">
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="label.form.price" xml:space="preserve">
+				<target>Preis</target>
+			</trans-unit>
 			<trans-unit id="label.general.artist.0" xml:space="preserve">
 				<target>Künstlerin</target>
 			</trans-unit>
@@ -18,11 +30,17 @@
 			<trans-unit id="label.general.readmore" xml:space="preserve">
 				<target>weiterlesen</target>
 			</trans-unit>
+			<trans-unit id="label.model.ajax.enquiry.priceBid" xml:space="preserve">
+				<target>Preisangebot abgeben für das Kunstwerk</target>
+			</trans-unit>
 			<trans-unit id="label.model.artist.degree" xml:space="preserve">
 				<target>Abschluss</target>
 			</trans-unit>
 			<trans-unit id="label.model.artist.studies" xml:space="preserve">
 				<target>Studium</target>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.button.priceBid" xml:space="preserve">
+				<target>Preisangebot abgeben</target>
 			</trans-unit>
 			<trans-unit id="label.model.exhibition.participatingArtists" xml:space="preserve">
 				<target>Teilnehmende Künstler</target>

@@ -45,6 +45,9 @@
 			<trans-unit id="flexform.controller.exhibition.tinyList" xml:space="preserve">
 				<target>Vernissage / Ausstellung &#171; Liste ( Tiny) &#187;</target>
 			</trans-unit>
+			<trans-unit id="flexform.controller.header.artist" xml:space="preserve">
+				<target>Header &#171; Künstler (Ein) &#187;</target>
+			</trans-unit>
 			<trans-unit id="flexform.controller.header.artists" xml:space="preserve">
 				<target>Header &#171; Künstler &#187;</target>
 			</trans-unit>

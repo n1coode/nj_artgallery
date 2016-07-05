@@ -32,6 +32,24 @@ class AjaxController extends \N1coode\NjArtgallery\Controller\AbstractController
 		parent::init($this->nj_domain_model);
     }
 	
+	protected function enquiryAction() {
+		$assignValues = [];
+		$assignValues['ext'] = $this->getExtSettings();
+		
+		if($this->request->hasArgument('artwork'))
+		{
+			$assignValues['artwork'] = $this->artworkRepository->findByUid($this->request->getArgument('artwork'));
+		}
+		
+		$this->view->assignMultiple($assignValues);
+		return json_encode( 
+            array(
+                "success" => $success,
+                "content" => $this->view->render()
+			)
+        );
+	}
+	
 	protected function imageAction()
     {
 		$success = true;

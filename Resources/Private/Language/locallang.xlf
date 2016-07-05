@@ -6,6 +6,18 @@
 			<trans-unit id="headline.model.exhibition.actualExhibition" xml:space="preserve">
 				<source>Actual exhibition</source>
 			</trans-unit>
+			<trans-unit id="label.form.email" xml:space="preserve">
+				<source>Email address</source>
+			</trans-unit>
+			<trans-unit id="label.form.message" xml:space="preserve">
+				<source>Message</source>
+			</trans-unit>
+			<trans-unit id="label.form.name" xml:space="preserve">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="label.form.price" xml:space="preserve">
+				<source>Price</source>
+			</trans-unit>
 			<trans-unit id="label.general.artist.0" xml:space="preserve">
 				<source>Artist</source>
 			</trans-unit>
@@ -18,11 +30,17 @@
 			<trans-unit id="label.general.readmore" xml:space="preserve">
 				<source>readmore</source>
 			</trans-unit>
+			<trans-unit id="label.model.ajax.enquiry.priceBid" xml:space="preserve">
+				<source>Set price bid for the artwork</source>
+			</trans-unit>
 			<trans-unit id="label.model.artist.degree" xml:space="preserve">
 				<source>Degree</source>
 			</trans-unit>
 			<trans-unit id="label.model.artist.studies" xml:space="preserve">
 				<source>Studies</source>
+			</trans-unit>
+			<trans-unit id="label.model.artwork.button.priceBid" xml:space="preserve">
+				<source>Send a price bid</source>
 			</trans-unit>
 			<trans-unit id="label.model.exhibition.participatingArtists" xml:space="preserve">
 				<source>Participating artists</source>

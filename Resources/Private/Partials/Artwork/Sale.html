@@ -1,5 +1,30 @@
+{namespace f=N1coode\NjPage\ViewHelpers}
 <f:if condition="{artwork.onSale">
-	<f:if condition="{artwork.showPrice}">
-		<f:format.number decimals="0" decimalSeparator="," thousandsSeparator=".">{artwork.price}</f:format.number> Euro
+	<f:if condition="{settings.model.artwork.showPrice}">
+		<f:then><f:format.number decimals="0" decimalSeparator="," thousandsSeparator=".">{artwork.price}</f:format.number> Euro</f:then>
+		<f:else>
+			<f:switch expression="{settings.model.artwork.enquiry}">
+				<f:case value="quoteRequest"><f:render section="quoteRequest" arguments="{_all}" /></f:case>
+				<f:case value="priceBid"><f:render section="priceBid" arguments="{_all}" /></f:case>
+				<f:case value="shop"><f:render section="shop" arguments="{_all}" /></f:case>
+			</f:switch>
+		</f:else>
 	</f:if>
 </f:if>
+
+<f:section name="quoteRequest">
+	quoteRequest
+</f:section>
+<f:section name="priceBid">
+	<f:button 
+		attributes="{data-enquiry-type:'priceBid'}"
+		animateClick="flipOutX" 
+		animateHover="flipInX" 
+		class="enquiry" 
+		icon="pen" 
+		key="{ext.langFile}label.model.artwork.button.priceBid" 
+	 />
+</f:section>
+<f:section name="shop">
+	shop
+</f:section>
