@@ -5,414 +5,515 @@ namespace N1coode\NjArtgallery\ViewHelpers;
  * @author n1coode
  * @package nj_artgallery
  */
-class WatermarkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
-{
+class WatermarkViewHelper extends \N1coode\NjPage\ViewHelpers\AbstractViewHelper {
+	
+	const _type_fileOriginal			= 'fileOriginal';
+	const _type_fileWatermark			= 'fileWatermark';
+	
+	const _arg_includeLabel				= 'includeLabel';
+	
+	const _attr_image					= 'image';
+	const _attr_label					= 'label';
+	const _attr_watermark				= 'watermark';
+	
+	const _labelHeight					= 50;
+	const _labelMarginBottom			= 25;
+	const _maxLengthArtworkTitle		= 32;
+	const _image_maxWidth				= 640;
+	const _watermark_transparency		= 33;
+	
+	const _textShadow = [
+		'color' => 'black',
+		'intensity' => '100',
+		'blur' => '10',
+		'opacity' => '100',
+		'offset' => '1,1',
+	];
+	
 	/**
-	 * @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer ContentObject
+	 * @var array 
+	 */
+	protected $attributes = [
+		'image' => [],
+		'label' => [],
+		'watermark' => []
+	];
+	
+	/**
+	 * @var \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer
 	 */
 	protected $cObj;
 	
+	
 	/**
-	 *	Discription following
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
-	 * @param int $maxWidth
-	 * @param int $maxHeight
-	 * @param int $transparency
-	 * @param string $title
-	 * @param string $artist
-	 * @return string  
+	 * @var array 
+	 * ['height','width','x','y'] 
 	 */
-	public function render(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image = null, $maxWidth = null, $maxHeight = null, $transparency = 65, $title = '', $artist='')
+	protected $iconAttributes = NULL;
+	
+	/**
+	 * @var array 
+	 * ['height','width','mime','url'] 
+	 */
+	protected $imageAttributes = NULL;
+	
+	/**
+	 * @var array 
+	 * ['height','width','x','y'] 
+	 */
+	protected $labelAttributes = NULL;
+	
+	/**
+	 * @var array 
+	 * ['height','width','x','y','offset'] 
+	 */
+	protected $watermarkAttributes = NULL;
+	
+	
+	
+	/**
+	 *
+	 * @var array
+	 */
+	protected $conf;
+	
+	/**
+	 * @var array
+	 */
+	protected $boxDimensions = NULL;
+	
+	/**
+	 * @var array 
+	 */
+	protected $labelDimensions = NULL;
+	
+	/**
+	 * @var int 
+	 */
+	protected $iconHeight = NULL;
+	
+	/**
+	 * @var array 
+	 */
+	protected $iconDimensions = NULL;
+	
+	/**
+	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+	 */
+	protected $imageFile = NULL;
+	
+	/**
+	 * @var int 
+	 */
+	protected $maxHeight = NULL;
+	
+	/**
+	 * @var int 
+	 */
+	protected $maxWidth = NULL;
+	
+	/**
+	 * @var array 
+	 */
+	protected $originalImage = NULL;
+	
+	/**
+	 * @var array 
+	 */
+	protected $watermarkDimensions = NULL;
+	
+	/**
+	 * @var array 
+	 */
+	protected $watermarkImage = NULL;
+	
+	/**
+	 * @var string 
+	 */
+	protected $artworkTitle = NULL;
+	
+	
+	/**
+	 * 
+	 */
+	public function initialize() 
 	{
-		$this->cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
-		
-		$watermarkFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('nj_artgallery').'Resources/Public/Gfx/watermark_berliner-galerie.png';
-		//$watermarkFile = 'typo3conf/ext/nj_artgallery/Resources/Public/Gfx/watermark.png';
-		$watermarFileExists = false;
-		
-		$originalImage = array();
-		$originalImage['url'] = $image->getOriginalResource()->getPublicUrl();
-		$originalImage['width'] = getimagesize($originalImage['url'])[0];
-		$originalImage['height'] = getimagesize($originalImage['url'])[1];
-		$originalImage['mime'] = getimagesize($originalImage['url'])['mime'];
-		
-		$watermarkImage = array();
-		
-		if(file_exists($watermarkFile))
+		if($this->argumentIsSet('image'))
 		{
-			$watermarkImage['url'] = $watermarkFile;
-			$watermarkImage['width'] = getimagesize($watermarkImage['url'])[0];
-			$watermarkImage['height'] = getimagesize($watermarkImage['url'])[1];
-			$watermarkImage['mime'] = getimagesize($watermarkImage['url'])['mime'];
+			$this->imageFile = $this->argumentGet('image');
+			$this->setOriginalImage();
+			$this->setWatermarkImage();
+			
 		}
-		
-		$ratio = 1;
-		
-		if($maxWidth != null)
-		{
-			$ratio = (int)$originalImage['width'] / (int)$maxWidth;
-		}
-		$originalImage['width'] = (int)((int)$originalImage['width'] / $ratio);
-		$originalImage['height'] = (int)((int)$originalImage['height'] / $ratio);
-		
-		$XY = $originalImage['width'].','.$originalImage['height'];
-		
-		//0,0,[10.w],[10.h]
-		//[10.w]*0.25,10,[10.w],[10.h]
-		$boxDimensions = array();
-		
-		
-		$boxHeight = 50;
-		
-		//$boxDimensions[0] = $originalImage['width'] * 0.25;
-		$boxDimensions[0] = 0;
-		$boxDimensions[1] = $originalImage['height'] * 0.75;
-		$boxDimensions[2] = $originalImage['width'];
-		$boxDimensions[3] = $originalImage['height'] - $boxDimensions[1] - ($originalImage['height'] * 0.1);
-		
-		$boxDimensions[0] = 0;
-		$boxDimensions[1] = $originalImage['height'] - $boxHeight - 25;
-		$boxDimensions[2] = $originalImage['width'];
-		$boxDimensions[3] = $boxHeight;
-		
-		$iconHeight = $boxHeight - 10;
-		// array imagettfbbox ( int size, int angle, string fontfile, string text )
-		$iconCoordinates = imagettfbbox ( 
-				$iconHeight, 
-				0, 
-				'typo3conf/ext/nj_artgallery/Resources/Public/Fonts/Lato-Italic.ttf', 
-				'&#xf1fc;');
-		if(isset($iconCoordinates[5]))
-		{
-			$iconWidth = $iconCoordinates[5];
-			if($iconWidth < 0)
-			{
-				$iconWidth *=(-1);
+		if($this->argumentIsTrue('resize')) {
+			if($this->argumentIsSet('maxHeight')) {
+				$this->maxHeight = $this->argumentGet('maxHeight');
+			}
+			else {
+				$this->maxWidth = $this->argumentIsSet('maxWidth') ? $this->argumentGet('maxWidth') : self::_image_maxWidth;
 			}
 		}
-		$iconWidth +=20;
+		$this->setAttributes();
+		$this->setArtworkTitle();
+	}
+	
+	/**
+	 * Hint: $this->registerArgument('value', 'mixed', 'The value to output', FALSE, NULL);
+	 * @return void
+	 */
+	public function initializeArguments() 
+	{
+		$this->registerArgument('image','\TYPO3\CMS\Extbase\Domain\Model\FileReference', 'The artwork image.',TRUE,NULL);
+		$this->registerArgument('artistName', 'string', 'Name of the artist.',FALSE,NULL);
+		$this->registerArgument('maxHeight', 'int', 'Maximum height of the rendered image.',FALSE,NULL);
+		$this->registerArgument('maxWidth', 'int', 'Maximum width of the rendered image.',FALSE,NULL);
+		$this->registerArgument('artworkTitle', 'string', 'Title of the artwork.',FALSE,NULL);
+		$this->registerArgument('watermarkTransparency', 'int', 'Transparency of the overlayed watermark.',FALSE, NULL);
+		$this->registerArgument(self::_arg_includeLabel, 'boolean', 'Option if a label (artwork info for example) should be printed on the image.', FALSE, TRUE);
+		$this->registerArgument('resize', 'boolean', 'Option if artwork should be resized.',FALSE,TRUE);
+		$this->registerArgument('keepRatio', 'boolean', 'Option if ratio of the image should be preserved.', FALSE, TRUE);
+		$this->registerArgument('crop','boolean','Option if image should be croped',FALSE,FALSE);
 		
-		$ratioWatermark = 1;
-		if($maxWidth != null)
-		{
-			$ratioWatermark = (int)$watermarkImage['width'] / ((int)$maxWidth - ((int)$maxWidth * 0.1));
-		}
-		$watermarkImage['width'] = (int)((int)$watermarkImage['width'] / $ratioWatermark);
-		$watermarkImage['height'] = (int)((int)$watermarkImage['height'] / $ratioWatermark);
-		
-		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($boxDimensions, 'boxDimensions');
-		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($XY, 'XY');
-		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($iconWidth, 'iconWidth');
-		
-		$watermarkDimensions = array();
-		
-		$XYwatermark = $watermarkImage['width'].','.$watermarkImage['height'];
-		
-		$offsetWatermark = ((int)$maxWidth - $watermarkImage['width']) / 2;
-		$offsetWatermark .= ',';
-		$offsetWatermark .= ($boxDimensions[1] - $watermarkImage['height']) / 2;
-		$watermarkDimensions[0] = ((int)$maxWidth - $watermarkImage['width']) / 2;
-		$watermarkDimensions[1] = $originalImage['height'] * 0.75;
-		$watermarkDimensions[2] = $originalImage['width'];
-		$watermarkDimensions[3] = $originalImage['height'] - $boxDimensions[1] - ($originalImage['height'] * 0.1);
-		
-		$titleOriginal = $title;
-		if(strlen($title) > 32)
-		{
-			$title = substr($title, 0, 28).'...';
-		}
-		
-		$watermark = array(
-				'XY' => $XY,
-				'format' => 'png',
-				'transparentBackground' => 1,
-				'transparentColor' => 'black',
-				'offset' => '0,0',
-				'25' => 'TEXT',
-				'25.' => array(
-					'text' => 'Berliner',
-					'fontColor' => 'black',
-					'fontFile' => 'typo3conf/ext/nj_artgallery/Resources/Public/Fonts/Lato-Italic.ttf',
-					#'fontSize' => ($boxDimensions[3]-10),
-					'fontSize' => '100',
-					'offset' => '0,100',
-					'align' => 'center',
-					'maxWidth' => '250',
-					'opacity' => 50,
-					'shadow.' => array(
-						'color' => '#efefef',
-						'intensity' => '75',
-						'opacity' => 75,
-						//'blur' => '90',
-						//'offset' => '10,10',
-					),
-					'hide' => '1',
-					'hideButCreateMap' => 1,
-					'emboss.' => array()
-				),
-				
-		);
-		
-		
-		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($originalImage, 'XY');
-		$conf = array(
-			'titleText' => $titleOriginal.' - '.$artist.' | Berliner Galerie',
-			'altText' => $titleOriginal.' - '.$artist.' | Berliner Galerie',
-                        'params' => 'class="round-corners"',
-                        'file' => 'GIFBUILDER',
-			'file.' => array(
-				'XY' => $XY,
-				'format' => 'jpg',
-				'quality' => 100,
-				'10' => 'IMAGE',
-				'10.' => array(
-					'offset' => '0,0',
-					'file' => $originalImage['url'],
-					'file.' => array(
-						'width' => $originalImage['width'],
-						'height' => $originalImage['height'],
-						'transparentBackground' => 1
-					),
-				),
-				'15' => 'EFFECT',
-				'15.' => array(
-					'value' => 'sharpen=15|gamma=1,5|',
-				),
-					
-// 				'18' => 'IMAGE',
-// 				'18.' => array(
-// 					'file' => 'GIFBUILDER',
-// 					'file.' => array(
-// 						'XY' => $XY,
-// 						'format' => 'jpg',
-// 						'transparentBackground' => 1,
-// 						'transparentColor' => 'white',
-// 						'10' => 'IMAGE',
-// 						'10.' => array(
-// 							'file' => $watermarkImage['url'],
-// 							'file.' => array(
-// 								'width' => $watermarkImage['width'],
-// 								'height' => $watermarkImage['height'],
-// 								'transparentBackground' => 1,
-// 									'transparentColor' => 'white',
-// 							),
-// 							'offset' => $offsetWatermark,
-// 						),
-// 						'20' => 'EFFECT',
-// 						'20.' => array(
-// 								'value'=>'rotate=3|'
-// 							)
-						
-// 					),
-					
-// 				),
-					
-				'18' => 'IMAGE',
-				'18.' => array(
-					'offset' => $offsetWatermark,
-					'file' => $watermarkImage['url'],
-					'file.' => array(
-						'width' => $watermarkImage['width'],
-						'height' => $watermarkImage['height'],
-						'transparentBackground' => 1,
-					),
-					
-				),
-				
-				
-				'25' => 'TEXT',
-				'25.' => array(
-					'text' => '&#xf1fc;',
-					'fontColor' => 'white',
-					'fontFile' => 'typo3conf/ext/nj_artgallery/Resources/Public/Fonts/Fontawesome-4.3.0/fontawesome-webfont.ttf',
-					'fontSize' => $iconHeight,
-					'offset' => ($boxDimensions[0] + 10).','.($boxDimensions[1] + $boxHeight -10),
-					
-					'shadow.' => array(
-						'color' => 'black',
-						'intensity' => '100',
-						'blur' => '75',
-						'opacity' => '100',
-						'offset' => '0,0',
-					),
-					'niceText' => '0',
-				),		
-					
-				
-				'33' => 'BOX',
-				'33.' => array(
-						'opacity' => 15,
-						'dimensions' => $boxDimensions[0].','.$boxDimensions[1].','.$boxDimensions[2].','.$boxDimensions[3],
-						'color' => 'black'
-				),
-				'21' => 'BOX',
-				'21.' => array(
-						'opacity' => 10,
-						'dimensions' => $boxDimensions[0].','.($boxDimensions[1] - 3).','.$boxDimensions[2].',3',
-						'color' => 'white'
-				),
-				'20' => 'BOX',
-				'20.' => array(
-						'opacity' => 20,
-						'dimensions' => $boxDimensions[0].','.$boxDimensions[1].','.$boxDimensions[2].','.($boxDimensions[3] + 5),
-						'color' => 'black'
-				),
-				'35' => 'BOX',
-				'35.' => array(
-						'opacity' => 65,
-						'dimensions' => $iconWidth.','.$boxDimensions[1].',1,'.$boxDimensions[3],
-						'color' => 'white'
-				),
-				'32' => 'TEXT',
-				'32.' => array(
-					'text' => $title,
-					'fontColor' => 'white',
-					'fontFile' => 'typo3conf/ext/nj_artgallery/Resources/Public/Fonts/FiraSans-Medium.ttf',
-					'fontSize' => 14,
-					'offset' => ($iconWidth + 10).','.($boxDimensions[1] + 15 + 5),
-					#'maxWidth' => ($originalImage['width'] - $iconWidth - 10),
-					'shadow.' => array(
-						'color' => 'black',
-						'intensity' => '100',
-						#'blur' => '50',
-						'opacity' => '100',
-						'offset' => '1,1',
-					),
-					'antiAlias' => 1,
-					'niceText' => 0,
-				),
-				'31' => 'TEXT',
-				'31.' => array(
-					'text' => $artist,
-					'fontColor' => 'white',
-					'fontFile' => 'typo3conf/ext/nj_artgallery/Resources/Public/Fonts/FiraSans-Regular.ttf',
-					'fontSize' => 15,
-					'offset' => ($iconWidth + 10).','.($boxDimensions[1] + 15 + 5 + 15 + 5),
+	}
+	
+	
+	/**
+	 * @return string  
+	 */
+	public function render()
+	{
+		if($this->imageFile !== NULL) {
+			$this->setBoxDimensions();
 			
-					'shadow.' => array(
-						'color' => 'black',
-						'intensity' => '100',
-						#'blur' => '50',
-						'opacity' => '100',
-						'offset' => '1,1',
-					),
-					'niceText' => '0',
-				),
-// 				'20' => 'IMAGE',
-// 				'20.' => array(
-					
-// 					'file' => 'typo3conf/ext/nj_artgallery/Resources/Public/Gfx/overlay.png',
-// 					'file.' => array(
-// 							'width' => $originalImage['width'],
-// 							'height' => $originalImage['height'],
-// 							'antiAlias' => 1,
-// 							'backColor' => '#cccccc'
-// 					),
-// 				)
-			)
-		);
-		
-		
-		$conf2 = array(
-			'file' => 'GIFBUILDER',
-			'file.' => array(
-				'XY' => $XY,
-				'format' => 'jpg',
-				'quality' => 100,
-
-				'10' => 'IMAGE',
-				'10.' => array(
-					'file' => 'typo3conf/ext/nj_artgallery/Resources/Public/Gfx/white.png',
-					'file.' => array(
-						'width' => $originalImage['width'],
-						'height' => $originalImage['height'],
-						'transparentBackground' => 1
-					),
-					
-				),
-					
-				'25' => 'TEXT',
-				'25.' => array(
-					'text' => '&#xf1fc;',
-					'fontColor' => '#efefef',
-					'fontFile' => 'typo3conf/ext/nj_artgallery/Resources/Public/Fonts/Fontawesome-4.3.0/fontawesome-webfont.ttf',
-					#'fontSize' => ($boxDimensions[3]-10),
-						'fontSize' => ($boxDimensions[3]*3),
-					'offset' => ($boxDimensions[0] + 10).','.($boxDimensions[1] + 10),
-					'align' => 'l,t',
-					//'hideButCreateMap' => 1,
-					'shadow.' => array(
-						'color' => 'black',
-						'intensity' => '100',
-						'blur' => '75',
-						'opacity' => '100',
-						'offset' => '0,0',
-					),
-					'niceText' => '0',
-				),		
-			),
-		);
-		
-		
-		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($conf, 'conf');
-		$fontSize = 100;
-		$coordinates = imagettfbbox ( $fontSize, 0, "typo3conf/ext/nj_artgallery/Resources/Public/Fonts/Lato-Italic.ttf", "Berliner");
-		while($coordinates[2] > 250)
-		{
-			$fontSize--;
-			$coordinates = imagettfbbox ( $fontSize, 0, "typo3conf/ext/nj_artgallery/Resources/Public/Fonts/Lato-Italic.ttf", "Berliner");
+			$this->setIconDimensions();
+			$this->buildImageRenderConfig();
+			
+			$this->cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
+			return $this->cObj->render($this->cObj->getContentObject('IMAGE'), $this->conf);
+		} else {
+			return "Fehler: kein image";
 		}
 		
+	}
+	
+	
+	protected function buildImageRenderConfig() {
+		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->watermarkDimensions);
+		$altTitle = '';
+		if($this->argumentIsSet('artworkTitle') || $this->argumentIsSet('artistName')) {
+			if($this->argumentIsSet('artworkTitle')) {
+				$altTitle .= $this->artworkTitle; 
+			}
+			if($this->argumentIsSet('artistName')) {
+				if($this->argumentIsSet('artworkTitle')) {
+					$altTitle .= ' - ';
+				}
+				$altTitle .= $this->argumentGet('artistName'); 
+			}
+			$altTitle .= ' | ';
+		}
 		
+		$altTitle .= 'Berliner Galerie'; //TODO: übergeben
 		
-		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($coordinates, 'coordinates');
-		//\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($fontSize, 'fontSize');
-		$conf3 = array(
-				'file' => 'GIFBUILDER',
-				'file.' => array(
-						'XY' => $XY,
-						'format' => 'jpg',
+		$this->conf = [
+			'titleText' => $altTitle,
+			'altText' => $altTitle,
+			'params' => 'class="round-corners"',
+			'file' => 'GIFBUILDER',
+			'file.' => [
+				'XY' => $this->attributes[self::_attr_image]['width'].','.$this->attributes[self::_attr_image]['height'],
+				'format' => 'jpg',
+				'quality' => 100,
+				'10' => 'IMAGE',
+				'10.' => [
+					'offset' => '0,0',
+					'file' => $this->attributes[self::_attr_image]['url'],
+					'file.' => [
+						'width' => $this->attributes[self::_attr_image]['width'],
+						'height' => $this->attributes[self::_attr_image]['height'],
+						'transparentBackground' => 1
+					],
+				],
+				'15' => 'IMAGE',
+				'15.' => [
+					'offset' => $this->attributes[self::_attr_watermark]['offset'],
+					'file' => $this->attributes[self::_attr_watermark]['url'],
+					'file.' => [
+						'width' => $this->attributes[self::_attr_watermark]['width'],
+						'height' => $this->attributes[self::_attr_watermark]['height'],
+						'transparentBackground' =>0,
+						
+					],
+				],
+			]
+		];
+		
+		if($this->argumentIsTrue(self::_arg_includeLabel)) {
+			$lineHeight = 5;
+			
+			$labelConf  = [
+				'file.' => [
+					'20' => 'BOX',
+					'20.' => [
+						'opacity' => 25,
+						'dimensions' => $this->attributes[self::_attr_label]['x'].','.$this->attributes[self::_attr_label]['y'].','.$this->attributes[self::_attr_label]['width'].','.($this->attributes[self::_attr_label]['height'] - (4 * $lineHeight)),
+						'color' => 'white'
+					],
+					'25' => 'TEXT',
+					'25.' => [
+						'text' => '&#xf1fc;',
+						'fontColor' => 'white',
+						'fontFile' => 'typo3conf/ext/nj_artgallery/Resources/Public/Fonts/Fontawesome-4.3.0/fontawesome-webfont.ttf',
+						'fontSize' => 30,
+						'offset' => (10).','.($this->attributes['image']['height'] - $this->attributes['label']['marginBottom'] - 15),
 
-						'10' => 'BOX',
-						'10.' => array(
-								'dimensions' => '0,0,'.$originalImage['width'].','.$originalImage['height'],
-								'color' => 'white'
-						),
-						
-						
-						'25' => 'TEXT',
-						'25.' => array(
-								'text' => 'Berliner',
-								'fontColor' => 'white',
-								'fontFile' => 'typo3conf/ext/nj_artgallery/Resources/Public/Fonts/Lato-Italic.ttf',
-								#'fontSize' => ($boxDimensions[3]-10),
-								'fontSize' => '100',
-								'offset' => '0,100',
-								'align' => 'center',
-								'maxWidth' => '250',
-								'shadow.' => array(
-									'color' => 'black',
-									'intensity' => '75',
-									//'opacity' => 75,
-									'blur' => '90',
-									//'offset' => '10,10',
-								),
-						),
-						'15' => 'SHADOW',
-						'15.' => array(
-								'textObjNum' => 25,
-								'color' => 'black',
-								'intensity' => '75',
-								//'opacity' => 75,
-								//'blur' => '90',
-								//'offset' => '10,10',
-						),
-				)
-		);
+						'shadow.' => [
+							'color' => 'black',
+							'intensity' => '100',
+							'blur' => '75',
+							'opacity' => '100',
+							'offset' => '0,0',
+						],
+						'niceText' => '0',
+					],
+					'30' => 'BOX',
+					'30.' => [
+						'opacity' => 33,
+						'dimensions' => $this->attributes[self::_attr_label]['x'].','.($this->attributes[self::_attr_label]['y'] + $lineHeight).','.$this->attributes[self::_attr_label]['width'].','.($this->attributes[self::_attr_label]['height'] - (2 * $lineHeight)),
+						'color' => 'black'
+					],
+					'35' => 'BOX',
+					'35.' => [
+						'opacity' => 25,
+						'dimensions' => $this->attributes[self::_attr_label]['x'].','.($this->attributes[self::_attr_label]['y'] + $this->attributes[self::_attr_label]['height'] - $lineHeight).','.$this->attributes[self::_attr_label]['width'].','.$lineHeight,
+						'color' => 'white'
+					],
+				]
+			];
+			$this->conf = array_replace_recursive($this->conf, $labelConf);
+		}
+				
+		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->conf);
+	}
+	
+	
+	protected function setArtworkTitle()
+	{
+		if($this->argumentIsSet('artworkTitle'))
+		{
+			$this->artworkTitle = $this->argumentGet('artworkTitle');
+		}
+	}
+	
+	/**
+	 * @return string
+	 */
+	protected function getArtworkTitleShort()
+	{
+		if(strlen($this->artworkTitle) > self::_maxLengthArtworkTitle) {
+			return substr($this->artworkTitle, 0, (self::_maxLengthArtworkTitle - 4)).'...';
+		}
+		else {
+			return $this->artworkTitle;
+		}
+	}
+	
+	
+	protected function setBoxDimensions()
+	{
+		$XY = $this->originalImage['width'].','.$this->originalImage['height'];
+		$this->boxDimensions = [];
+		$boxHeight = 50; //??; TODO
 		
-		//$preview = $this->pobj->cObj->IMG_RESOURCE($conf);
-		return $this->cObj->IMAGE($conf); 
+		$this->boxDimensions[0] = 0;
+		$this->boxDimensions[1] = $this->originalImage['height'] - self::_labelHeight - 25;
+		$this->boxDimensions[2] = $this->originalImage['width'];
+		$this->boxDimensions[3] = self::_labelHeight;
+	}
+
+	
+	
+	protected function setLabelDimensions()
+	{
+		$this->labelDimensions = [
+			'x'			=>'',
+			'y'			=> '',
+			'width'		=> $this->originalImage['width'] - $this->iconDimensions,
+			'height'	=> self::_labelHeight
+		];
+	}
+	
+	protected function setDimensions()
+	{
+		
+	}
+
+	/**
+	 * 
+	 */
+	protected function setIconDimensions()
+	{
+		$this->iconDimensions = [
+			'height' => self::_labelHeight - 10,
+			'width' => 0
+		];
+		
+		$iconCoordinates = imagettfbbox ( 
+			$iconHeight, 
+			0, 
+			'typo3conf/ext/nj_artgallery/Resources/Public/Fonts/Lato-Italic.ttf', 
+			'&#xf1fc;'
+		);
+		if(isset($iconCoordinates[5]))
+		{
+			$this->iconDimensions['width'] = $iconCoordinates[5];
+			if($this->iconDimensions['width'] < 0)
+			{
+				$this->iconDimensions['width'] *=(-1);
+			}
+		}
+		$this->iconDimensions['width'] +=20;
+	}
+
+	/**
+	 * @return void
+	 */
+	public function setOriginalImage() {
+		$this->originalImage = [];
+		$this->originalImage['url'] = $this->imageFile->getOriginalResource()->getPublicUrl();
+		$this->originalImage['width'] = getimagesize($this->originalImage['url'])[0];
+		$this->originalImage['height'] = getimagesize($this->originalImage['url'])[1];
+		$this->originalImage['mime'] = getimagesize($this->originalImage['url'])['mime'];
+		
+		$this->setImageDimension(self::_type_fileOriginal);
+	}
+	
+	
+	protected function setAttributes() {
+		$this->setAttributesImage();
+		$this->setAttributesLabel();
+		$this->setAttributesWatermark();
+		\TYPO3\CMS\Extbase\Utility\DebuggerUtility::var_dump($this->attributes);
+	}
+	
+	
+	
+	
+	protected function setAttributesImage() {
+		$imageUrl = $this->imageFile->getOriginalResource()->getPublicUrl();
+		$this->attributes = [
+			self::_attr_image => [
+				'height'	=> getimagesize($imageUrl)[1],
+				'mime'		=> getimagesize($imageUrl)['mime'],
+				'url'		=> $imageUrl,
+				'width'		=> getimagesize($imageUrl)[0],
+			],
+		];
+		
+		
+		if($this->argumentIsTrue('resize'))
+		{
+			if($this->argumentIsTrue('keepRatio')) {
+				
+				if($this->argumentIsSet('maxHeight')) {
+					if( (int)$this->argumentGet('maxHeight') < (int)$this->attributes[self::_attr_image]['height'] ) {
+						$this->attributes[self::_attr_image]['height'] = $this->argumentGet('maxHeight');
+						$ratio = (int)$this->originalImage['height'] / (int)$this->attributes[self::_attr_image]['height'];
+						$this->attributes[self::_attr_image]['width'] = (int)$this->originalImage['width'] / $ratio;
+					}
+				}
+				else {
+					
+				}
+			}
+			else {
+				
+			}
+		} //end of $this->argumentIsTrue('resize')
+		else {
+			//nothing TODO
+		}
+	}
+	
+	
+	protected function setAttributesLabel() {
+		if($this->argumentIsTrue(self::_arg_includeLabel)) {
+			$this->attributes[self::_attr_label]['height'] = self::_labelHeight;
+			$this->attributes[self::_attr_label]['width'] = $this->attributes[self::_attr_image]['width'];
+			$this->attributes[self::_attr_label]['marginBottom'] = self::_labelMarginBottom;
+			$this->attributes[self::_attr_label]['x'] = '0';
+			$this->attributes[self::_attr_label]['y'] = $this->attributes[self::_attr_image]['height'] - $this->attributes[self::_attr_label]['height'] - $this->attributes[self::_attr_label]['marginBottom'];
+		}
+	}
+	
+	
+	protected function setAttributesWatermark()
+	{
+		$ratio = ($this->attributes[self::_attr_image]['width'] / $this->watermarkImage['width']) * 0.9;
+		
+		$this->attributes[self::_attr_watermark]['width'] = ($this->watermarkImage['width'] * $ratio);
+		$this->attributes[self::_attr_watermark]['height'] = ($this->watermarkImage['height'] * $ratio);
+		
+		$this->attributes[self::_attr_watermark]['x'] = (((int)$this->attributes[self::_attr_image]['width'] - (int)$this->attributes[self::_attr_watermark]['width']) / 2);
+		if($this->argumentIsTrue(self::_arg_includeLabel)) {
+			$labelHeight = $this->attributes[self::_attr_label]['height'] + $this->attributes[self::_attr_label]['marginBottom'];
+			$this->attributes[self::_attr_watermark]['y'] = (((int)$this->attributes[self::_attr_image]['height'] - $labelHeight - (int)$this->attributes[self::_attr_watermark]['height']) / 2);
+		}
+		else {
+			$labelHeight = $this->attributes[self::_attr_label]['height'] + $this->attributes[self::_attr_label]['marginBottom'];
+			$this->attributes[self::_attr_watermark]['y'] = (((int)$this->attributes[self::_attr_image]['height'] - (int)$this->attributes[self::_attr_watermark]['height']) / 2);
+		}
+		$this->attributes[self::_attr_watermark]['offset'] = $this->attributes[self::_attr_watermark]['x'].','.$this->attributes[self::_attr_watermark]['y'];
+		$this->attributes[self::_attr_watermark]['url'] = $this->watermarkImage['url'];
+	}
+	
+	
+
+	
+	
+	
+	/**
+	 * @return void
+	 */
+	public function setWatermarkImage() {
+		
+		$watermarkFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('nj_artgallery').'Resources/Public/Gfx/watermark_berliner-galerie_4.png';
+		if(file_exists($watermarkFile))
+		{
+			$this->watermarkImage = [];
+			$this->watermarkImage['url'] = $watermarkFile;
+			$this->watermarkImage['width'] = getimagesize($this->watermarkImage['url'])[0];
+			$this->watermarkImage['height'] = getimagesize($this->watermarkImage['url'])[1];
+			$this->watermarkImage['mime'] = getimagesize($this->watermarkImage['url'])['mime'];
+			
+			$this->setImageDimension(self::_type_fileWatermark);
+		}
+	}
+	
+	
+	/**
+	 * @param string $type
+	 */
+	public function setImageDimension($type) {
+		$ratio = 1;
+		
+		if($this->argumentGet('maxWidth') != NULL)
+		{
+			switch($type) {
+				case self::_type_fileOriginal:
+					$ratio = (int)$this->originalImage['width'] / (int)$this->maxWidth;
+					$this->originalImage['width'] = (int)((int)$this->originalImage['width'] / $ratio);
+					$this->originalImage['height'] = (int)((int)$this->originalImage['height'] / $ratio);
+					break;
+				case self::_type_fileWatermark:
+					$ratio = (int)$this->watermarkImage['width'] / ((int)$this->maxWidth - ((int)$this->maxWidth * 0.1));
+					$this->watermarkImage['width'] = (int)((int)$this->watermarkImage['width'] / $ratio);
+					$this->watermarkImage['height'] = (int)((int)$this->watermarkImage['height'] / $ratio);
+					break;
+				default:
+					//nothing todo
+				;
+			}
+		}
 	}
 }
-?> 

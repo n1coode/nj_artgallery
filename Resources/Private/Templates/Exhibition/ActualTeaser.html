@@ -7,9 +7,9 @@
 <f:comment>
 <f:if condition="{exhibition.artworks}">
 	<f:then>
-		<f:wrapAction class="wall" ext="{ext}">
+		<f:wrap.action class="wall" ext="{ext}">
 			<f:render section="wall" arguments="{_all}" />	
-		</f:wrapAction>
+		</f:wrap.action>
 	</f:then>
 	<f:else>	
 			
@@ -76,7 +76,7 @@
 
 <f:section name="impression">
 	<f:alias map="{'image':'{f:randomImage(images:exhibition.impressions)}'}">
-		<f:wrapAction class="impression" ext="{ext}" style="background-image:url('{image}');">
+		<f:wrap.action class="impression" ext="{ext}" style="background-image:url('{image}');">
 			<header class="n1base n1wrapper">
 				<div class="n1base n1container">
 					<h2>{exhibition.title}</h2>
@@ -106,7 +106,7 @@
 				</svg>
 			</div>
 			<div class="overlay"></div>
-		</f:wrapAction>	
+		</f:wrap.action>	
 	</f:alias>	
 </f:section>
 

@@ -188,8 +188,8 @@ class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControl
 	
 	private function includeJavaScript()
 	{
-		$this->getPageRenderer()
-			->addJsFooterFile(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('nj_artgallery') . 'Resources/Public/Javascript/tx_njartgallery_frontend.js');
+		//$this->getPageRenderer()
+		//	->addJsFooterFile(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('nj_artgallery') . 'Resources/Public/Javascript/tx_njartgallery_frontend.js');
 	}
 	
 	

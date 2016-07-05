@@ -3,13 +3,17 @@ plugin.tx_njartgallery {
 	settings {
  		general {
 			ajax {
-                typeNum = 6512784255379
+                typeNum = 65278425
             }
 			includeJQuery = {$plugin.tx_njartgallery.settings.general.includeJQuery}
 			includeCss = {$plugin.tx_njartgallery.settings.general.includeCss}
 			cssFile = {$plugin.tx_njartgallery.settings.general.cssFile}
 		}
 		model {
+			artwork {
+				enquiry = {$plugin.tx_njartgallery.settings.model.artwork.enquiry}
+				showPrice = {$plugin.tx_njartgallery.settings.model.artwork.showPrice}
+			}
 			exhibition { 
 				pid {
 					archive = {$plugin.tx_njartgallery.settings.model.exhibition.pid.archive}
@@ -39,7 +43,7 @@ plugin.tx_njartgallery {
 #
 lib.AJAXPrototype= PAGE
 lib.AJAXPrototype {
-	typeNum = 6512784255379
+	typeNum = 65278425
 	config {
 		disableAllHeaderCode = 1
 		xhtml_cleaning = 0
@@ -56,7 +60,7 @@ lib.AJAXPrototype {
 #
 AJAX_njartgallery < lib.AJAXPrototype
 AJAX_njartgallery {
-	typeNum = 6512784255379
+	typeNum = 65278425
 	 
 	10 = USER
 	10 {
@@ -70,25 +74,34 @@ AJAX_njartgallery {
 		switchableControllerActions {
             Ajax {
 				1 = image
+				2 = enquiry
             }
         }
 	}
 }
 
-lib.tx_njartgallery = USER
-lib.tx_njartgallery {
-    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
-    extensionName = NjArtgallery
-    pluginName = Pi1
-    vendorName = N1coode
-    controller = Artist
-    action = menu
-	settings =< plugin.tx_njartgallery.settings
-	persistence =< plugin.tx_njartgallery.persistence
-	view =< plugin.tx_njartgallery.view
-    switchableControllerActions {
-		Artist {
-			1 = focus
-		}
-	}
-}
+
+#[globalVar = LIT:1 = {$tx_njpage.js.requireJs}] && [globalVar = LIT:1 > {$tx_njpage.js.angularJS}]
+#page.headerData.110 = TEXT 
+#page.headerData.110.value(
+#	'tx_njartgallery': '../../../../nj_artgallery/Resources/Public/Javascript/tx_njartgallery_frontend',
+#)
+#[global]
+
+#[globalVar = LIT:1 = {$tx_njpage.js.requireJs}] && [globalVar = LIT:1 = {$tx_njpage.js.angularJS}]
+#page.headerData.110 = TEXT 
+#page.headerData.110.value(
+#	'tx_njartgallery': '../../../../../typo3conf/ext//nj_artgallery/Resources/Public/Javascript/tx_njartgallery_frontend',
+#)
+#[global]
+
+#[globalVar = LIT:1 = {$tx_njpage.js.requireJs}]
+#page.headerData.210 = TEXT 
+#page.headerData.210.value(
+#			"tx_njartgallery": ["jquery"],
+#)
+#[global]
+
+#[globalVar = LIT:1 > {$tx_njpage.js.requireJs}] && [globalVar = LIT:1 > {$tx_njpage.js.angularJS}]
+page.includeJSFooter.tx_njartgallery = typo3conf/ext/nj_artgallery/Resources/Public/Javascript/tx_njartgallery_frontend.js
+#[global]

@@ -7,18 +7,18 @@ $GLOBALS['TYPO3_CONF_VARS']['EXTCONF'][$_EXTKEY] = unserialize($_EXTCONF);
     'N1coode.'.$_EXTKEY,
     'Pi1',
     array(
-		'Ajax' => 'image',
+		'Ajax' => 'enquiry,image',
         'Artist' => 'index, list, focus, menu',
-        'Artwork' => 'index, focus, quoteRequest, showcase, showAjax',
-        'Header' => 'artists,contact,exhibitions,index,standard,startpage',
+        'Artwork' => 'index, focus, enquiry, showcase, showAjax',
+        'Header' => 'artist,contact,exhibitions,index,standard,startpage',
         'Exhibition' => 'actual, actualTeaser, alarm, index, list, focus, tinyList'
     ),
     // non-cacheable actions
     array( 
-		'Ajax' => 'image',
+		'Ajax' => 'enquiry,image',
         'Artist' => 'index, list, focus, menu',
-        'Artwork' => 'index, focus, quoteRequest, showcase, showAjax',
-        'Header' => 'artists,contact,exhibitions,index,standard,startpage',
+        'Artwork' => 'index, focus, enquiry, showcase, showAjax',
+        'Header' => 'artist,contact,exhibitions,index,standard,startpage',
         'Exhibition' => 'actual, actualTeaser, alarm, index, list, focus, tinyList'
     )
 );

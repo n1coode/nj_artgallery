@@ -1,0 +1,52 @@
+{namespace f=N1coode\NjPage\ViewHelpers}
+<f:wrap.action ext="{ext}">
+	<f:if condition="{formData.success}">
+        <f:then>
+			<f:render partial="Form/Message" arguments="{headline:'{ext.langFile}form.success.dataSent',message:'{ext.langFile}form.success.thankYou',type:'success'}" />
+			<f:comment>//TODO Summary</f:comment>
+		</f:then>
+		<f:else>
+			<header>
+				<p class="subtitle"><f:translate key="label.model.ajax.enquiry.{settings.model.artwork.enquiry}" /></p>
+				<h2>{artwork.title}</h2>
+			</header>
+			<div class="n1flex">
+				<div class="flexitem col6of12 artwork">
+					<f:if condition="{artwork.image}">
+						<f:image src="{artwork.image.uid}" treatIdAsReference="1" alt="" width="620" class="draggable"></f:image>
+					</f:if>
+				</div>
+				<div class="flexitem col6of12 form">
+					<f:form enctype="multipart/form-data">
+						<f:render section="inputStandard" arguments="{id:'name',value:'{formData.name}',mandatory:1,addon-class:'user',error:'{errors.lastName}', args:{spellcheck:'false',autocomplete:'off'}}"></f:render>
+						<f:render section="inputStandard" arguments="{id:'email',value:'{formData.email}',mandatory:1,addon-class:'email',error:'{errors.lastName}', args:{spellcheck:'false',autocomplete:'off'}}"></f:render>
+						<f:render section="inputStandard" arguments="{id:'price',value:'{formData.email}',mandatory:1,addon-class:'email',error:'{errors.lastName}', args:{spellcheck:'false',autocomplete:'off'}}"></f:render>
+						<fieldset name="message">
+                        <label><f:translate key="label.form.message" /> <span class="marker">*</span></label>
+                        <div class="input-group">
+                            <f:form.textarea id="message" name="message" value="{registrationData.message}" class="form-control" additionalAttributes="{rows:'7'}" /> 
+                        </div>
+                        <f:if condition="{errors.message}">
+                            <f:render section="errorMessage" arguments="{id:'message',error:'{errors.message}'}"></f:render>
+                        </f:if>
+					</f:form>
+				</div>
+			</div>
+		</f:else>
+	</f:if>
+</f:wrap.action>
+
+<f:section name="inputStandard">
+    <div class="status {f:if(condition:'{error}',then:'error',else:'ok')}">
+        
+        <div class="input-group">
+            <span class="input-group-addon"><i class="fa fa-{addon-class} fa-fw"></i></span>
+			<f:form.textfield class="form-control" id="{id}" name="{id}" value="{value}" type="{f:if(condition:'{type}',then:'{type}',else:'text')}" additionalAttributes="{njVH:inputArguments(args:args)}" placeholder="{f:translate(key:'label.form.{id}')}" />
+		</div>
+        <f:if condition="{mandatory}">
+            <f:if condition="{error}">
+                <div class="input-error"><f:translate key="form.error.{id}.{error}"></f:translate></div>
+            </f:if>
+        </f:if>
+    </div>
+</f:section>

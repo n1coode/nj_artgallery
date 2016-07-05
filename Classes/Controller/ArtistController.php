@@ -32,6 +32,15 @@ class ArtistController extends \N1coode\NjArtgallery\Controller\AbstractControll
 		parent::init($this->nj_domain_model);
     }
     
+	
+	/**
+	 * @return void
+	 */
+	protected function artistAction()
+	{
+		
+	}
+	
     
     /**
      * Displays a list of artists
@@ -119,10 +128,15 @@ class ArtistController extends \N1coode\NjArtgallery\Controller\AbstractControll
 
 		$assignValues['version'] = $version;
 		
-        $this->artist = new \N1coode\NjArtgallery\Domain\Model\Artist();
+        
         if($artist !== NULL && is_object($artist)) {
 			$this->artist = $artist;
-            
+		}
+		else if($this->settings['model'][$this->nj_domain][$action]['artist'] > 0) {
+			$this->artist = $this->artistRepository->findByUid($this->settings['model'][$this->nj_domain][$action]['artist']);
+		}
+		
+		if($this->artist !== NULL && is_object($this->artist)) {
 			switch($version) {
 				case self::_version_focus_summary:
 					

@@ -10,7 +10,7 @@
 
 <f:section name="complete">
 	<f:wrap.section type="header" role="header">
-		<f:render section="header" arguments="{_all}" />
+		<f:render section="summary" arguments="{_all}" />
 	</f:wrap.section>
 	<f:wrap.section type="main">
 		<f:render section="artworks" arguments="{_all}" />
@@ -18,30 +18,24 @@
 </f:section>
 
 <f:section name="header">
-	<f:wrap.action ext="{ext}" class="header">
-		<div class="n1flex">
-			<div class="flexitem col8of12">
-				<div class="headline">
-					<f:render partial="Artist/Info/Categories" arguments="{artist:artist}" />
-					<h1><span class="label"><f:translate key="{ext.langFile}label.general.artist.{artist.gender}" />:</span> {artist.name}</h1>
-					<f:render partial="Artist/Info/Location" arguments="{artist:artist}" />
-				</div>
-				<f:render partial="Artist/Info/Studies" arguments="{artist:artist,ext:ext}" />
-				<div class="summary"><p><f:format.raw>{artist.summary}</f:format.raw></p></div>
-			</div>
-			<div class="flexitem col4of12">
-				<f:if condition="{artist.teaserImage}">
-					<f:then>
-						<f:alias map="{height:'1080',width:'630'}">
-							<div class="teaser imgfix"><f:image src="{artist.teaserImage.uid}" treatIdAsReference="1" height="{height}" width="{width}c" /></div>
-						</f:alias>
-					</f:then>
-				</f:if>
-			</div>
-		</div>
-	</f:wrap.action>
+	
 </f:section>
 
+
+<f:section name="summary">
+	<f:wrap.action ext="{ext}" class="header">
+		
+			
+				<header>
+					<h1>{artist.name}</h1>
+					<p class="subtitle">
+						<f:translate key="{ext.langFile}label.general.artist.{artist.gender}" />, <f:render partial="Artist/Info/Location" arguments="{artist:artist}" />
+					</p>
+					<f:render partial="Artist/Info/Categories" arguments="{artist:artist}" />
+				</header>
+				<div class="summary"><f:format.raw>{artist.summary}</f:format.raw></div>
+	</f:wrap.action>
+</f:section>
 <f:section name="artworks">
 	<f:wrap.action ext="{ext}" class="artworks">
 		<div class="grid masonry artworks">
@@ -51,14 +45,19 @@
 				<f:if condition="!{artworkIterator.isFirst}">
 					<f:if condition="{artwork.image}">
 						<div class="grid-item">
-							<div class="artwork">
+							<div class="artwork imgfix" data-uid="{artwork.uid}" data-onsale="{artwork.onSale}">
 								<f:image src="{artwork.image.uid}" treatIdAsReference="1" alt="" width="620"></f:image>
-								<f:render partial="Artwork/Info" arguments="{artwork:artwork,ext:ext}" />
+								<f:render partial="Artwork/Info" arguments="{artwork:artwork,ext:ext,settings:settings}" />
 							</div>
 						</div>
 					</f:if>
 				</f:if>
 			</f:for>
 		</div>
+		<f:render partial="JavascriptArguments" arguments="{js:js}"></f:render>
 	</f:wrap.action>
+</f:section>
+
+<f:section name="exhibitions">
+	
 </f:section>

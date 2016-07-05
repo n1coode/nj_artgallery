@@ -1,34 +1,9 @@
-{namespace njVH=N1coode\NjArtgallery\ViewHelpers}
-
-<div id="tx_njartgallery_artwork_focus_{artwork.uid}" class="tx_njartgallery artwork focus clearfix">
-	<njVH:Watermark image="{artwork.image}" title="{artwork.title}" artist="{artwork.artist.name}" maxWidth="360"></njVH:Watermark>
-            
-	<f:if condition="{artwork.onSale}">
-		<f:if condition="{artwork.sold}">
-			<div class="status clearfix" title="{f:translate(key:'showcase.sold')}">
-				<div class="sign"></div>
-				<div class="note"><b><f:translate key="showcase.sold">Kunstwerk ist verkauft</f:translate>!</b></div>
-			</div>
-		</f:if>
-	</f:if>
-    <div class="artInfo">
-            
-		&quot;{artwork.title}&quot; <f:translate key="general.by">von</f:translate> <f:if condition="{artwork.artist.advertise}"><f:then><f:link.action pageUid="31" controller="Artist" arguments="{artist:artwork.artist}" title="{f:translate(key:{general.link.viewArtist})}">{artwork.artist.name}</f:link.action></f:then><f:else>{artist.name}</f:else></f:if> <f:if condition="{artwork.cryear}">({artwork.cryear})</f:if><br/>
-		<f:for each="{artwork.techniques}" as="technique" iteration="techIteration">
-			{technique.name}<f:if condition="{techIteration.isLast}==0">, </f:if>
-		</f:for>
-		<f:for each="{artwork.medium}" as="medium" iteration="mediumIteration">
-			<f:if condition="{mediumIteration.isFirst}"> <f:translate key="general.at">auf</f:translate> </f:if>
-				{medium.title}
-			<f:if condition="{mediumIteration.isLast}==0">, </f:if>
-		</f:for>
-		, {artwork.width} x {artwork.height} cm<br/>
-		<f:translate key="general.category">Kategorie</f:translate>: <f:link.action action="list" arguments="{category:category.uid}">{category.name}</f:link.action>
-               
-		<f:for each="{artwork.motives}" as="motive" iteration="motiveIteration">
-			<f:if condition="{motiveIteration.isFirst}"> &#187; </f:if> 
-				<f:link.action pageUid="30" action="list" arguments="{category:category.uid,motive:motive.uid}" title="{f:translate(key:{general.link.viewMoreMotives})}">{motive.title}</f:link.action>
-			<f:if condition="{motiveIteration.isLast}==0">, </f:if>
-		</f:for>
-    </div>
-</div>
+{namespace f=N1coode\NjArtgallery\ViewHelpers}
+<f:wrap.action ext="{ext}" additionalAttributes="{data-artwork:artwork.uid}">
+	<f:watermark 
+		artistName="{artwork.artist.name}"
+		artworkTitle="{artwork.title}"
+		image="{artwork.image}"
+		maxHeight="300"
+	/>
+</f:wrap.action>
